@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:schemas.wp.org)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:developer.wordpress.org)",
+      "Bash(git fetch:*)",
+      "Bash(pwsh:*)",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -Number 1 -ShortName \"wordpress-block-theme\" \"Convert the provided design files into a fully functional WordPress block theme for RenalInfoLK Web\")",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -PathsOnly)",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json)",
+      "Bash(powershell.exe -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -RequireTasks -IncludeTasks)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

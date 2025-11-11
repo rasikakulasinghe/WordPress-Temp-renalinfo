@@ -20,10 +20,13 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- **WordPress Block Theme**: Paths at repository root
+- **Templates**: `/templates/*.html` (block templates)
+- **Template Parts**: `/parts/*.html` (header, footer, sidebar)
+- **Patterns**: `/patterns/*.php` (block patterns)
+- **Styles**: `/styles/*.json` (style variations)
+- **Configuration**: `theme.json`, `functions.php`, `style.css`
+- Paths shown below follow WordPress block theme standards
 
 <!-- 
   ============================================================================
@@ -46,30 +49,35 @@ description: "Task list template for feature implementation"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Project initialization and basic structure
+**Purpose**: WordPress block theme initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Create WordPress block theme directory structure (templates/, parts/, patterns/, styles/, assets/)
+- [ ] T002 Create mandatory index.html template in templates/
+- [ ] T003 [P] Initialize theme.json with version 3 and $schema reference
+- [ ] T004 [P] Create style.css with theme metadata (name, URI, description, version, text domain)
+- [ ] T005 [P] Create functions.php with basic theme setup hooks
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+**Purpose**: Core theme configuration that MUST be complete before ANY user story can be implemented
 
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+**⚠️ CRITICAL**: No pattern/template work can begin until this phase is complete
 
-Examples of foundational tasks (adjust based on your project):
+WordPress Block Theme Foundational Tasks:
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T006 Configure theme.json settings (colors, typography, spacing, layout)
+- [ ] T007 [P] Define color palette in theme.json settings.color.palette
+- [ ] T008 [P] Define typography system in theme.json settings.typography
+- [ ] T009 [P] Define spacing scale in theme.json settings.spacing.spacingSizes
+- [ ] T010 Configure layout constraints (contentSize, wideSize)
+- [ ] T011 [P] Register template parts in theme.json templateParts
+- [ ] T012 [P] Register custom templates in theme.json customTemplates (if any)
+- [ ] T013 Validate theme.json against WP 6.8 schema
+- [ ] T014 Create basic template parts (parts/header.html, parts/footer.html)
 
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+**Checkpoint**: Foundation ready - pattern and template implementation can now begin in parallel
 
 ---
 
@@ -81,19 +89,21 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
 
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+> **NOTE: Test in WordPress Site Editor, verify responsive behavior and accessibility**
 
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T015 [P] [US1] Test pattern in Site Editor (verify block markup renders correctly)
+- [ ] T016 [P] [US1] Test responsive behavior across viewports (320px to 1920px+)
+- [ ] T017 [P] [US1] Validate accessibility (color contrast, keyboard navigation, ARIA labels)
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T018 [P] [US1] Create [pattern name] pattern in patterns/[pattern-name].php
+- [ ] T019 [P] [US1] Create [template name] template in templates/[template-name].html
+- [ ] T020 [US1] Configure theme.json block styles for [block types]
+- [ ] T021 [US1] Register pattern category in functions.php (if new category)
+- [ ] T022 [US1] Add theme.json style variations for [variation name] in styles/
+- [ ] T023 [US1] Validate theme.json schema compliance after changes
+- [ ] T024 [US1] Test pattern in Site Editor and verify user customization works
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

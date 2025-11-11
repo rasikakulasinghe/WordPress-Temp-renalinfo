@@ -17,21 +17,34 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**WordPress Version**: 6.7+ (required), tested up to 6.8
+**PHP Version**: 7.2+ (minimum)
+**Theme Type**: Block Theme (Full Site Editing)
+**Schema Version**: theme.json v3 (WP 6.8 schema)
+**Primary Files**: theme.json, templates/*.html, patterns/*.php, functions.php
+**Testing**: WordPress Site Editor, style variations, responsive viewports, accessibility
+**Text Domain**: [theme text domain, e.g., twentytwentyfive]
+**Build Process**: None (pure block theme - no compilation required)
+**Performance Goals**: Fluid typography (clamp), optimized images (WebP), minimal CSS
+**Constraints**: WCAG 2.1 Level AA, GPL v2+, WordPress coding standards
+**Scale/Scope**: [e.g., 8 style variations, 50+ patterns, 10 template parts]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**WordPress Block Theme Principles Compliance:**
+
+- [ ] **Schema Compliance**: Does theme.json validate against WP 6.8 schema?
+- [ ] **Block Markup Exclusivity**: Are templates/patterns using block markup only?
+- [ ] **theme.json as Source of Truth**: Is styling centralized (no hardcoded values)?
+- [ ] **Minimal PHP Logic**: Is functions.php limited to WordPress hooks only?
+- [ ] **Template Hierarchy**: Do templates follow WordPress naming conventions?
+- [ ] **Accessibility (WCAG 2.1 AA)**: Are color contrast and keyboard nav verified?
+- [ ] **Pattern-Based Composition**: Are reusable structures implemented as patterns?
+
+**Violations** (if any - must be justified in Complexity Tracking section):
+- None expected for standard WordPress block theme features
 
 ## Project Structure
 
@@ -56,39 +69,37 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+# WordPress Block Theme Structure (STANDARD)
+/
+├── assets/
+│   ├── css/              # Editor styles
+│   ├── fonts/            # Variable fonts (.woff2)
+│   └── images/           # Theme images (CC0 licensed)
+├── parts/                # Template parts (.html)
+│   ├── header.html
+│   ├── footer.html
+│   └── sidebar.html
+├── patterns/             # Block patterns (.php)
+│   ├── template-*.php    # Full page patterns
+│   ├── hidden-*.php      # Component patterns
+│   └── [feature]-*.php   # Feature patterns
+├── styles/               # Style variations (.json)
+│   ├── [variation].json  # Complete theme variations
+│   ├── blocks/           # Block-specific styles
+│   ├── colors/           # Color palette variations
+│   ├── sections/         # Section variations
+│   └── typography/       # Typography presets
+├── templates/            # Block templates (.html - REQUIRED)
+│   ├── index.html        # MANDATORY
+│   ├── single.html
+│   ├── page.html
+│   ├── archive.html
+│   ├── search.html
+│   └── 404.html
+├── functions.php         # Theme setup (minimal PHP)
+├── style.css             # Theme metadata + minimal CSS
+├── theme.json            # Global configuration (PRIMARY)
+└── README.txt            # Theme documentation
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real

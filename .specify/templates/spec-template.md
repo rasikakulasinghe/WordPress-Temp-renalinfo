@@ -84,21 +84,30 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: Theme MUST [specific capability, e.g., "provide responsive header pattern"]
+- **FR-002**: Theme MUST [styling requirement, e.g., "support fluid typography across viewports"]
+- **FR-003**: Users MUST be able to [customization, e.g., "customize colors via Site Editor"]
+- **FR-004**: Theme MUST [structure requirement, e.g., "include archive template for blog posts"]
+- **FR-005**: Theme MUST [accessibility requirement, e.g., "maintain 4.5:1 color contrast ratio"]
+
+*WordPress Block Theme Specific Requirements:*
+
+- **FR-WP-001**: theme.json MUST validate against WordPress 6.8 schema
+- **FR-WP-002**: Templates MUST use block markup exclusively (no custom HTML)
+- **FR-WP-003**: Patterns MUST be registered with proper categories
+- **FR-WP-004**: functions.php MUST use only WordPress core hooks
+- **FR-WP-005**: Theme MUST include mandatory index.html template
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-006**: Theme MUST support [NEEDS CLARIFICATION: number of style variations not specified]
+- **FR-007**: Pattern should include [NEEDS CLARIFICATION: specific block composition not defined]
 
-### Key Entities *(include if feature involves data)*
+### Key Theme Components *(include if feature involves theme structure)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Template/Pattern Name]**: [What it displays, which blocks it uses, layout structure]
+- **[Style Variation]**: [Color palette, typography settings, spacing modifications]
+- **[Template Part]**: [Purpose (header/footer/sidebar), patterns referenced, customization points]
 
 ## Success Criteria *(mandatory)*
 
@@ -109,7 +118,8 @@
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: [Design metric, e.g., "Theme passes WordPress theme review requirements"]
+- **SC-002**: [Accessibility metric, e.g., "All templates achieve WCAG 2.1 Level AA compliance"]
+- **SC-003**: [User experience metric, e.g., "Content editors can customize layout without code"]
+- **SC-004**: [Performance metric, e.g., "Theme loads with zero render-blocking resources"]
+- **SC-005**: [Validation metric, e.g., "theme.json validates against WP 6.8 schema with zero errors"]
