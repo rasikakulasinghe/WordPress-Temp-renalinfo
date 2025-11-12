@@ -40,11 +40,11 @@
 **Effort**: ~2 hours
 **Dependencies**: None - can start immediately
 
-- [ ] T001 Create WordPress block theme directory structure at repository root (templates/, parts/, patterns/, styles/, assets/css/, assets/fonts/, assets/images/)
-- [ ] T002 [P] Create mandatory index.html template in /templates/ (WordPress requires this file - fallback template for all views)
-- [ ] T003 [P] Create style.css with theme metadata (Name: RenalInfoLK Web, Version: 1.0.0, Requires at least: 6.7, Tested up to: 6.8, Requires PHP: 7.2, License: GPL-2.0-or-later, Text Domain: renalinfo-web)
-- [ ] T004 [P] Create functions.php with basic file header and opening PHP tag (minimal setup file)
-- [ ] T005 [P] Create README.txt with WordPress theme directory format (installation, features, changelog sections)
+- [X] T001 Create WordPress block theme directory structure at repository root (templates/, parts/, patterns/, styles/, assets/css/, assets/fonts/, assets/images/)
+- [X] T002 [P] Create mandatory index.html template in /templates/ (WordPress requires this file - fallback template for all views)
+- [X] T003 [P] Create style.css with theme metadata (Name: RenalInfoLK Web, Version: 1.0.0, Requires at least: 6.7, Tested up to: 6.8, Requires PHP: 7.2, License: GPL-2.0-or-later, Text Domain: renalinfo-web)
+- [X] T004 [P] Create functions.php with basic file header and opening PHP tag (minimal setup file)
+- [X] T005 [P] Create README.txt with WordPress theme directory format (installation, features, changelog sections)
 
 **Checkpoint**: Directory structure created, mandatory files exist
 
@@ -58,21 +58,21 @@
 
 **⚠️ CRITICAL**: No pattern/template work can begin until this phase is complete
 
-- [ ] T006 Initialize theme.json at repository root with version 3 and $schema reference (https://schemas.wp.org/wp/6.8/theme.json)
-- [ ] T007 [P] Define color palette in theme.json settings.color.palette (13 colors: primary #359EFF, primary-dark #2E4F64, secondary #BDE0FE, green-blue #006D77, cta-yellow #FFC300, accent #FFD28E, accent-dark #1d2c33, accent-text #332A1C, background-light #f5f7f8, background-dark #0f1923, text-light #4A4A4A, text-dark #E0E0E0, footer-dark #1C2541)
-- [ ] T008 [P] Download Lexend variable font from Google Fonts GitHub, convert to WOFF2 with Latin subset, save to /assets/fonts/lexend-variable.woff2 (~25-35KB expected)
-- [ ] T008-A [P] Configure font-display: swap in theme.json fontFace declarations for Lexend variable font to prevent FOIT/FOUT (Flash of Invisible Text/Flash of Unstyled Text)
-- [ ] T009 [P] Define typography system in theme.json settings.typography (fontFamilies: Lexend with fontFace declaration for variable font, fontSizes: 8 sizes with clamp() values, fontWeights: 400-900, fluid: true)
-- [ ] T010 [P] Define spacing scale in theme.json settings.spacing.spacingSizes (8 presets: 10=0.25rem, 20=0.5rem, 30=0.75rem, 40=1rem, 50=clamp(1rem,2vw,1.5rem), 60=clamp(1.5rem,3vw,2rem), 70=clamp(2rem,4vw,3rem), 80=clamp(3rem,5vw,4rem))
-- [ ] T011 [P] Configure layout constraints in theme.json settings.layout (contentSize: 1200px, wideSize: 1440px, useRootPaddingAwareAlignments: true)
-- [ ] T012 [P] Define border radius values in theme.json (default: 0.125rem, lg: 0.25rem, xl: 0.5rem, full: 0.75rem)
-- [ ] T013 [P] Configure theme.json styles.color (background: background-light, text: text-light)
-- [ ] T014 [P] Configure theme.json styles.elements.button (border-radius: full, padding, hover states with CTA yellow background)
-- [ ] T015 [P] Configure theme.json styles.elements.link (color: primary, hover color: primary-dark)
-- [ ] T016 [P] Configure theme.json styles.elements.heading (font-weight: 700-900, color: primary-dark, line-height: 1.1-1.4)
-- [ ] T017 Register template parts in theme.json templateParts (header with area: header, footer with area: footer, sidebar with area: uncategorized)
-- [ ] T018 Validate theme.json against WordPress 6.8 schema using JSON schema validator (ensure version is integer 3, all slugs are kebab-case, all required properties present)
-- [ ] T019 Add GPL-2.0-or-later LICENSE.txt file to repository root with full license text
+- [X] T006 Initialize theme.json at repository root with version 3 and $schema reference (https://schemas.wp.org/wp/6.8/theme.json)
+- [X] T007 [P] Define color palette in theme.json settings.color.palette (13 colors: primary #359EFF, primary-dark #2E4F64, secondary #BDE0FE, green-blue #006D77, cta-yellow #FFC300, accent #FFD28E, accent-dark #1d2c33, accent-text #332A1C, background-light #f5f7f8, background-dark #0f1923, text-light #4A4A4A, text-dark #E0E0E0, footer-dark #1C2541)
+- [X] T008 [P] Download Lexend variable font from Google Fonts GitHub, convert to WOFF2 with Latin subset, save to /assets/fonts/lexend-variable.woff2 (~25-35KB expected)
+- [X] T008-A [P] Configure font-display: swap in theme.json fontFace declarations for Lexend variable font to prevent FOIT/FOUT (Flash of Invisible Text/Flash of Unstyled Text)
+- [X] T009 [P] Define typography system in theme.json settings.typography (fontFamilies: Lexend with fontFace declaration for variable font, fontSizes: 8 sizes with clamp() values, fontWeights: 400-900, fluid: true)
+- [X] T010 [P] Define spacing scale in theme.json settings.spacing.spacingSizes (8 presets: 10=0.25rem, 20=0.5rem, 30=0.75rem, 40=1rem, 50=clamp(1rem,2vw,1.5rem), 60=clamp(1.5rem,3vw,2rem), 70=clamp(2rem,4vw,3rem), 80=clamp(3rem,5vw,4rem))
+- [X] T011 [P] Configure layout constraints in theme.json settings.layout (contentSize: 1200px, wideSize: 1440px, useRootPaddingAwareAlignments: true)
+- [X] T012 [P] Define border radius values in theme.json (default: 0.125rem, lg: 0.25rem, xl: 0.5rem, full: 0.75rem)
+- [X] T013 [P] Configure theme.json styles.color (background: background-light, text: text-light)
+- [X] T014 [P] Configure theme.json styles.elements.button (border-radius: full, padding, hover states with CTA yellow background)
+- [X] T015 [P] Configure theme.json styles.elements.link (color: primary, hover color: primary-dark)
+- [X] T016 [P] Configure theme.json styles.elements.heading (font-weight: 700-900, color: primary-dark, line-height: 1.1-1.4)
+- [X] T017 Register template parts in theme.json templateParts (header with area: header, footer with area: footer, sidebar with area: uncategorized)
+- [X] T018 Validate theme.json against WordPress 6.8 schema using JSON schema validator (ensure version is integer 3, all slugs are kebab-case, all required properties present)
+- [X] T019 Add GPL-2.0-or-later LICENSE.txt file to repository root with full license text
 
 **Checkpoint**: Foundation ready - theme.json validated, fonts loaded, all presets defined. Pattern and template implementation can now begin in parallel.
 
@@ -89,42 +89,42 @@
 
 ### Core Templates for US1
 
-- [ ] T020 [P] [US1] Create home.html template in /templates/ (blog homepage: template-part header, hero pattern, featured posts grid with query loop, template-part footer)
-- [ ] T021 [P] [US1] Create single.html template in /templates/ (blog post view: template-part header, post-title, post-featured-image, post-content, post-meta, post-comments, template-part footer)
-- [ ] T022 [P] [US1] Create page.html template in /templates/ (static pages: template-part header, page content area with full-width support, template-part footer)
-- [ ] T023 [P] [US1] Create archive.html template in /templates/ (blog archive: template-part header, archive-title, query loop with post-template grid layout, query-pagination, template-part footer)
-- [ ] T024 [P] [US1] Create search.html template in /templates/ (search results: template-part header, search query display, query loop for results, zero-results message, template-part footer)
-- [ ] T025 [P] [US1] Create 404.html template in /templates/ (error page: template-part header, friendly error message, search form, links to main sections, template-part footer)
+- [X] T020 [P] [US1] Create home.html template in /templates/ (blog homepage: template-part header, hero pattern, featured posts grid with query loop, template-part footer)
+- [X] T021 [P] [US1] Create single.html template in /templates/ (blog post view: template-part header, post-title, post-featured-image, post-content, post-meta, post-comments, template-part footer)
+- [X] T022 [P] [US1] Create page.html template in /templates/ (static pages: template-part header, page content area with full-width support, template-part footer)
+- [X] T023 [P] [US1] Create archive.html template in /templates/ (blog archive: template-part header, archive-title, query loop with post-template grid layout, query-pagination, template-part footer)
+- [X] T024 [P] [US1] Create search.html template in /templates/ (search results: template-part header, search query display, query loop for results, zero-results message, template-part footer)
+- [X] T025 [P] [US1] Create 404.html template in /templates/ (error page: template-part header, friendly error message, search form, links to main sections, template-part footer)
 
 ### Template Parts for US1
 
-- [ ] T026 [US1] Create header.html in /parts/ (site header: group with gradient background #006D77 to #1C2541, site-logo, navigation block, search block, dark mode toggle HTML button)
-- [ ] T027 [US1] Create footer.html in /parts/ (site footer: group with footer-dark background, columns for Quick Links/Resources/Contact Info, copyright text, social media links)
-- [ ] T028 [P] [US1] Create sidebar.html in /parts/ (blog sidebar: recent posts, categories list, search form - optional for single.html)
+- [X] T026 [US1] Create header.html in /parts/ (site header: group with gradient background #006D77 to #1C2541, site-logo, navigation block, search block, dark mode toggle HTML button)
+- [X] T027 [US1] Create footer.html in /parts/ (site footer: group with footer-dark background, columns for Quick Links/Resources/Contact Info, copyright text, social media links)
+- [X] T028 [P] [US1] Create sidebar.html in /parts/ (blog sidebar: recent posts, categories list, search form - optional for single.html)
 
 ### Essential Patterns for US1
 
-- [ ] T029 [P] [US1] Create hero-primary.php in /patterns/ (main hero: two-column group with heading h1, paragraph, buttons group, image with hero illustration, background secondary color)
-- [ ] T030 [P] [US1] Create header-primary.php in /patterns/ (primary header: gradient background, site-logo, navigation with menu items, search form, dark mode toggle)
-- [ ] T031 [P] [US1] Create footer-primary.php in /patterns/ (multi-column footer: 3 columns with headings and list items, contact info with Material Symbol SVGs for location_on/call/mail, copyright paragraph)
+- [X] T029 [P] [US1] Create hero-primary.php in /patterns/ (main hero: two-column group with heading h1, paragraph, buttons group, image with hero illustration, background secondary color)
+- [X] T030 [P] [US1] Create header-primary.php in /patterns/ (primary header: gradient background, site-logo, navigation with menu items, search form, dark mode toggle)
+- [X] T031 [P] [US1] Create footer-primary.php in /patterns/ (multi-column footer: 3 columns with headings and list items, contact info with Material Symbol SVGs for location_on/call/mail, copyright paragraph)
 
 ### Icon Assets for US1
 
-- [ ] T032 [P] [US1] Extract and optimize 13 Material Symbols SVG icons from Google Material Design Icons GitHub (health_and_safety, article, play_circle, image, campaign, search, menu, arrow_forward, location_on, call, mail, family_restroom, medical_information)
-- [ ] T033 [US1] Embed inline SVG icons in header-primary.php pattern (health_and_safety for logo, search icon, menu icon for mobile)
-- [ ] T034 [US1] Embed inline SVG icons in footer-primary.php pattern (location_on for address, call for phone, mail for email)
+- [X] T032 [P] [US1] Extract and optimize 13 Material Symbols SVG icons from Google Material Design Icons GitHub (health_and_safety, article, play_circle, image, campaign, search, menu, arrow_forward, location_on, call, mail, family_restroom, medical_information)
+- [X] T033 [US1] Embed inline SVG icons in header-primary.php pattern (health_and_safety for logo, search icon, menu icon for mobile)
+- [X] T034 [US1] Embed inline SVG icons in footer-primary.php pattern (location_on for address, call for phone, mail for email)
 
 ### Theme Assets for US1
 
-- [ ] T035 [P] [US1] Create or obtain hero illustration image, optimize to WebP format (<300KB), save to /assets/images/hero-illustration.webp with PNG fallback hero-illustration.png
-- [ ] T036 [P] [US1] Create screenshot.png at repository root (1200x900px showing homepage design for WordPress themes directory)
-- [ ] T037 [P] [US1] Create /assets/fonts/LICENSE-fonts.txt with Lexend font SIL OFL 1.1 license text and attribution
+- [X] T035 [P] [US1] Create or obtain hero illustration image, optimize to WebP format (<300KB), save to /assets/images/hero-illustration.webp with PNG fallback hero-illustration.png
+- [X] T036 [P] [US1] Create screenshot.png at repository root (1200x900px showing homepage design for WordPress themes directory)
+- [X] T037 [P] [US1] Create /assets/fonts/LICENSE-fonts.txt with Lexend font SIL OFL 1.1 license text and attribution
 
 ### Theme Functions for US1
 
-- [ ] T038 [US1] Register theme setup in functions.php (renalinfo_web_setup function with add_theme_support for block-templates, post-thumbnails, custom-logo, responsive-embeds, html5, editor-styles)
-- [ ] T039 [US1] Enqueue theme stylesheet in functions.php (renalinfo_web_enqueue_styles function loading style.css with theme version, hooked to wp_enqueue_scripts)
-- [ ] T040 [US1] Register pattern categories in functions.php (renalinfo_web_pattern_categories function: renalinfo-web-heroes, renalinfo-web-cta, renalinfo-web-content, hooked to init)
+- [X] T038 [US1] Register theme setup in functions.php (renalinfo_web_setup function with add_theme_support for block-templates, post-thumbnails, custom-logo, responsive-embeds, html5, editor-styles)
+- [X] T039 [US1] Enqueue theme stylesheet in functions.php (renalinfo_web_enqueue_styles function loading style.css with theme version, hooked to wp_enqueue_scripts)
+- [X] T040 [US1] Register pattern categories in functions.php (renalinfo_web_pattern_categories function: renalinfo-web-heroes, renalinfo-web-cta, renalinfo-web-content, hooked to init)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - theme can be uploaded, activated, Site Editor opens, all templates render correctly, basic patterns available
 

@@ -1,0 +1,373 @@
+/**
+ * Mobile Menu Styles
+ * 
+ * Responsive navigation drawer for mobile devices (<768px)
+ * with backdrop overlay and smooth transitions.
+ *
+ * @package RenalInfoLK_Web
+ * @since 1.0.0
+ */
+
+/* ===================================================================
+   Mobile Menu Variables
+   =================================================================== */
+
+:root {
+	--mobile-menu-width: 300px;
+	--mobile-menu-transition: 0.3s;
+	--backdrop-bg: rgba(15, 25, 35, 0.7);
+}
+
+/* ===================================================================
+   Mobile Menu Toggle Button
+   =================================================================== */
+
+/**
+ * Hamburger menu button - visible only on mobile/tablet
+ */
+.mobile-menu-toggle {
+	display: none;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	margin: 0;
+	width: 44px;
+	height: 44px;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+	transition: background-color 0.2s ease;
+	border-radius: 4px;
+}
+
+.mobile-menu-toggle:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-toggle:focus {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.mobile-menu-toggle svg {
+	width: 24px;
+	height: 24px;
+	display: block;
+}
+
+/* Show toggle button on screens smaller than 768px */
+@media (max-width: 768px) {
+	.mobile-menu-toggle {
+		display: inline-flex;
+	}
+}
+
+/* ===================================================================
+   Mobile Menu Drawer
+   =================================================================== */
+
+/**
+ * Slide-in drawer container - hidden by default
+ */
+.mobile-menu-drawer {
+	position: fixed;
+	top: 0;
+	right: -100%;
+	width: var(--mobile-menu-width);
+	max-width: 85vw;
+	height: 100vh;
+	background-color: var(--wp--preset--color--background-light);
+	box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+	z-index: 9999;
+	overflow-y: auto;
+	transition: right var(--mobile-menu-transition) ease-in-out;
+	padding: 1.5rem;
+}
+
+/**
+ * Drawer open state
+ */
+.mobile-menu-drawer.is-open {
+	right: 0;
+}
+
+/**
+ * Dark mode support
+ */
+.is-dark-theme .mobile-menu-drawer {
+	background-color: var(--wp--preset--color--background-dark);
+}
+
+/* ===================================================================
+   Mobile Menu Header
+   =================================================================== */
+
+/**
+ * Drawer header with close button
+ */
+.mobile-menu-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid var(--wp--preset--color--text-light);
+}
+
+.mobile-menu-title {
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 600;
+	color: var(--wp--preset--color--primary-dark);
+	margin: 0;
+}
+
+.is-dark-theme .mobile-menu-title {
+	color: var(--wp--preset--color--text-dark);
+}
+
+/**
+ * Close button
+ */
+.mobile-menu-close {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	width: 44px;
+	height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--wp--preset--color--text-light);
+	transition: background-color 0.2s ease;
+	border-radius: 4px;
+}
+
+.mobile-menu-close:hover {
+	background-color: var(--wp--preset--color--secondary);
+}
+
+.is-dark-theme .mobile-menu-close:hover {
+	background-color: var(--wp--preset--color--accent-dark);
+}
+
+.mobile-menu-close:focus {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.mobile-menu-close svg {
+	width: 24px;
+	height: 24px;
+	display: block;
+}
+
+/* ===================================================================
+   Mobile Menu Navigation
+   =================================================================== */
+
+/**
+ * Navigation menu inside drawer
+ */
+.mobile-menu-navigation {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mobile-menu-navigation .wp-block-navigation {
+	display: block;
+}
+
+.mobile-menu-navigation .wp-block-navigation-item {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mobile-menu-navigation .wp-block-navigation-item a {
+	display: block;
+	padding: 1rem;
+	color: var(--wp--preset--color--text-light);
+	text-decoration: none;
+	font-size: var(--wp--preset--font-size--base);
+	font-weight: 500;
+	transition: background-color 0.2s ease, color 0.2s ease;
+	border-radius: 4px;
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+}
+
+.mobile-menu-navigation .wp-block-navigation-item a:hover {
+	background-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--primary-dark);
+}
+
+.is-dark-theme .mobile-menu-navigation .wp-block-navigation-item a {
+	color: var(--wp--preset--color--text-dark);
+}
+
+.is-dark-theme .mobile-menu-navigation .wp-block-navigation-item a:hover {
+	background-color: var(--wp--preset--color--accent-dark);
+	color: var(--wp--preset--color--primary);
+}
+
+.mobile-menu-navigation .wp-block-navigation-item a:focus {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+/**
+ * Active/current menu item
+ */
+.mobile-menu-navigation .wp-block-navigation-item.current-menu-item a {
+	background-color: var(--wp--preset--color--primary);
+	color: #ffffff;
+	font-weight: 600;
+}
+
+/* ===================================================================
+   Backdrop Overlay
+   =================================================================== */
+
+/**
+ * Semi-transparent overlay behind drawer
+ */
+.mobile-menu-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: var(--backdrop-bg);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 9998;
+	transition: opacity var(--mobile-menu-transition) ease-in-out,
+	            visibility 0s linear var(--mobile-menu-transition);
+}
+
+/**
+ * Backdrop visible state
+ */
+.mobile-menu-backdrop.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity var(--mobile-menu-transition) ease-in-out,
+	            visibility 0s linear 0s;
+}
+
+/* ===================================================================
+   Body Scroll Lock
+   =================================================================== */
+
+/**
+ * Prevent body scroll when menu is open
+ */
+body.mobile-menu-open {
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
+
+/* ===================================================================
+   Desktop Navigation Hide
+   =================================================================== */
+
+/**
+ * Hide desktop navigation on mobile
+ */
+@media (max-width: 768px) {
+	.wp-block-navigation:not(.mobile-menu-navigation .wp-block-navigation) {
+		display: none;
+	}
+}
+
+/* ===================================================================
+   Reduced Motion Preference
+   =================================================================== */
+
+/**
+ * Respect user's motion reduction preferences
+ * Disables animations for users with vestibular disorders
+ */
+@media (prefers-reduced-motion: reduce) {
+	.mobile-menu-drawer,
+	.mobile-menu-backdrop {
+		transition-duration: 0.01s !important;
+	}
+	
+	.mobile-menu-toggle,
+	.mobile-menu-close,
+	.mobile-menu-navigation .wp-block-navigation-item a {
+		transition: none !important;
+	}
+}
+
+/* ===================================================================
+   Accessibility Enhancements
+   =================================================================== */
+
+/**
+ * Skip to content link for keyboard users
+ */
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	background-color: var(--wp--preset--color--cta-yellow);
+	color: var(--wp--preset--color--accent-text);
+	padding: 1rem 1.5rem;
+	text-decoration: none;
+	font-weight: 600;
+	z-index: 100000;
+	transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+	top: 0;
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+/**
+ * Focus trap within drawer when open
+ */
+.mobile-menu-drawer.is-open *:focus {
+	outline-color: var(--wp--preset--color--primary);
+	outline-width: 2px;
+	outline-offset: 2px;
+}
+
+/* ===================================================================
+   Responsive Adjustments
+   =================================================================== */
+
+/**
+ * Tablet landscape (769px - 1024px) - desktop nav visible
+ */
+@media (min-width: 769px) {
+	.mobile-menu-toggle,
+	.mobile-menu-drawer,
+	.mobile-menu-backdrop {
+		display: none !important;
+	}
+}
+
+/**
+ * Small mobile devices (320px - 375px)
+ */
+@media (max-width: 375px) {
+	.mobile-menu-drawer {
+		width: 280px;
+		max-width: 90vw;
+		padding: 1rem;
+	}
+	
+	.mobile-menu-navigation .wp-block-navigation-item a {
+		font-size: var(--wp--preset--font-size--small);
+		padding: 0.875rem;
+	}
+}

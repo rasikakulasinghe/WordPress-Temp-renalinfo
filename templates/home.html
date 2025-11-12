@@ -1,10 +1,53 @@
-<!-- wp:template-part {"slug":"header"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
-	<!-- wp:pattern {"slug":"twentytwentyfive/hidden-blog-heading"} /-->
-	<!-- wp:pattern {"slug":"twentytwentyfive/template-query-loop"} /-->
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
+<main class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0">
+	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80"}}},"backgroundColor":"secondary","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull has-secondary-background-color has-background" style="padding-top:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--80)">
+		<!-- wp:heading {"textAlign":"center","level":1,"fontSize":"3xl"} -->
+		<h1 class="wp-block-heading has-text-align-center has-3-xl-font-size">Pediatric Nephrology Knowledge Platform</h1>
+		<!-- /wp:heading -->
+		
+		<!-- wp:paragraph {"align":"center","fontSize":"lg"} -->
+		<p class="has-text-align-center has-lg-font-size">Comprehensive resources for healthcare professionals and families</p>
+		<!-- /wp:paragraph -->
+		
+		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
+		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--50)">
+			<!-- wp:button {"backgroundColor":"cta-yellow","textColor":"accent-text"} -->
+			<div class="wp-block-button"><a class="wp-block-button__link has-accent-text-color has-cta-yellow-background-color has-text-color has-background wp-element-button">Browse Articles</a></div>
+			<!-- /wp:button -->
+			
+			<!-- wp:button {"className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Watch Videos</a></div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+	</div>
+	<!-- /wp:group -->
+	
+	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--80);padding-left:var(--wp--preset--spacing--50)">
+		<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"2xl","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|60"}}}} -->
+		<h2 class="wp-block-heading has-text-align-center has-2-xl-font-size" style="margin-bottom:var(--wp--preset--spacing--60)">Latest Articles</h2>
+		<!-- /wp:heading -->
+		
+		<!-- wp:query {"queryId":0,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false}} -->
+		<div class="wp-block-query">
+			<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|60"}},"layout":{"type":"grid","columnCount":3}} -->
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":"0.5rem"}}} /-->
+				
+				<!-- wp:post-title {"isLink":true,"fontSize":"xl"} /-->
+				
+				<!-- wp:post-date {"fontSize":"sm","textColor":"text-light","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|30"}}}} /-->
+				
+				<!-- wp:post-excerpt {"moreText":"Read More →","excerptLength":30} /-->
+			<!-- /wp:post-template -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

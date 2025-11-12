@@ -1,0 +1,68 @@
+# WordPress Block Theme - RenalInfoLK Web
+# No build process - pure block theme
+
+# WordPress Core Files
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor & IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+error_log
+debug.log
+
+# Temporary Files
+*.tmp
+*.temp
+*.cache
+*.bak
+*.backup
+*~
+
+# Theme Development (if any)
+node_modules/
+.sass-cache/
+*.css.map
+*.js.map
+
+# Documentation Artifacts (keep in repo)
+# specs/ - keep this directory
+# .claude/ - keep command definitions
+# .specify/ - keep scripts and memory
+
+# Compressed Files (theme zips for distribution)
+*.zip
+!screenshot.png
