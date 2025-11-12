@@ -188,6 +188,31 @@ function renalinfo_web_register_block_styles() {
 			'label' => __( 'Medical Info', 'renalinfo-web' ),
 		)
 	);
+	
+	// Button style variations for CTAs
+	register_block_style(
+		'core/button',
+		array(
+			'name'  => 'cta-primary',
+			'label' => __( 'CTA Primary', 'renalinfo-web' ),
+		)
+	);
+	
+	register_block_style(
+		'core/button',
+		array(
+			'name'  => 'cta-secondary',
+			'label' => __( 'CTA Secondary', 'renalinfo-web' ),
+		)
+	);
+	
+	register_block_style(
+		'core/button',
+		array(
+			'name'  => 'cta-large',
+			'label' => __( 'CTA Large', 'renalinfo-web' ),
+		)
+	);
 }
 add_action( 'init', 'renalinfo_web_register_block_styles' );
 

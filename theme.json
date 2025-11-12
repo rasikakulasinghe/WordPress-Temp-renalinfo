@@ -234,6 +234,9 @@
 			}
 		}
 	},
+	"patterns": [
+		"renalinfo-web-cta"
+	],
 	"styles": {
 		"color": {
 			"background": "var(--wp--preset--color--background-light)",
@@ -475,7 +478,10 @@
 				"css": ".wp-block-navigation a:hover { color: var(--wp--preset--color--primary); }"
 			},
 			"core/post-template": {
-				"css": "display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;"
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--60)"
+				},
+				"css": ".wp-block-post-template { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; } @media (max-width: 640px) { .wp-block-post-template { grid-template-columns: 1fr; } } @media (min-width: 641px) and (max-width: 1023px) { .wp-block-post-template { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); } } @media (min-width: 1024px) { .wp-block-post-template { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }"
 			},
 			"core/query-pagination": {
 				"typography": {
@@ -488,7 +494,11 @@
 							"text": "var(--wp--preset--color--primary)"
 						}
 					}
-				}
+				},
+				"spacing": {
+					"blockGap": "var(--wp--preset--spacing--30)"
+				},
+				"css": ".wp-block-query-pagination { gap: 0.5rem; } .wp-block-query-pagination .page-numbers { padding: 0.5rem 0.75rem; border-radius: 0.25rem; transition: background-color 0.2s ease; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; } .wp-block-query-pagination .page-numbers:hover { background-color: var(--wp--preset--color--secondary); } .wp-block-query-pagination .page-numbers.current { background-color: var(--wp--preset--color--primary); color: white; font-weight: 700; }"
 			},
 			"core/post-title": {
 				"elements": {
@@ -499,6 +509,26 @@
 					}
 				},
 				"css": ".wp-block-post-title a:hover { color: var(--wp--preset--color--primary); text-decoration: none; }"
+			},
+			"core/post-terms": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--sm)",
+					"fontWeight": "500"
+				},
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--primary)"
+						}
+					}
+				},
+				"spacing": {
+					"margin": {
+						"top": "0",
+						"bottom": "0"
+					}
+				},
+				"css": ".wp-block-post-terms a { padding: 0.25rem 0.5rem; border-radius: 0.25rem; transition: background-color 0.2s ease; } .wp-block-post-terms a:hover { background-color: var(--wp--preset--color--secondary); text-decoration: none; }"
 			},
 			"core/columns": {
 				"spacing": {

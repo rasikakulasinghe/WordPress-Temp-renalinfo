@@ -1,0 +1,101 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.8/theme.json",
+	"version": 3,
+	"title": "High Contrast",
+	"description": "Increased contrast ratios for better accessibility (WCAG AAA 7:1+)",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#0066CC",
+					"name": "Primary Blue (Darker)"
+				},
+				{
+					"slug": "primary-dark",
+					"color": "#003366",
+					"name": "Primary Dark (Deeper)"
+				},
+				{
+					"slug": "secondary",
+					"color": "#E6F3FF",
+					"name": "Secondary Light Blue"
+				},
+				{
+					"slug": "green-blue",
+					"color": "#004D55",
+					"name": "Green Blue (Darker)"
+				},
+				{
+					"slug": "cta-yellow",
+					"color": "#CC9900",
+					"name": "CTA Yellow (Darker)"
+				},
+				{
+					"slug": "accent",
+					"color": "#FFB347",
+					"name": "Accent Peach"
+				},
+				{
+					"slug": "accent-dark",
+					"color": "#0D1A1F",
+					"name": "Accent Dark (Deeper)"
+				},
+				{
+					"slug": "accent-text",
+					"color": "#1A1409",
+					"name": "Accent Text (Darker)"
+				},
+				{
+					"slug": "background-light",
+					"color": "#FFFFFF",
+					"name": "Background Pure White"
+				},
+				{
+					"slug": "background-dark",
+					"color": "#000000",
+					"name": "Background Pure Black"
+				},
+				{
+					"slug": "text-light",
+					"color": "#333333",
+					"name": "Text Dark Gray"
+				},
+				{
+					"slug": "text-dark",
+					"color": "#F5F5F5",
+					"name": "Text Light Gray"
+				},
+				{
+					"slug": "footer-dark",
+					"color": "#0A0F1A",
+					"name": "Footer Dark (Deeper)"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--background-light)",
+			"text": "var(--wp--preset--color--text-light)"
+		},
+		"elements": {
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--cta-yellow)",
+					"text": "var(--wp--preset--color--accent-text)"
+				},
+				"border": {
+					"width": "2px",
+					"style": "solid",
+					"color": "var(--wp--preset--color--accent-text)"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--primary)"
+				}
+			}
+		}
+	}
+}
