@@ -21,7 +21,7 @@ Renalinfolk is a professional WordPress block theme designed specifically for pe
 * **Lexend Typography:** Professional, highly readable font family perfect for medical content
 * **Dark Mode Variation:** Alternative style variation for user preference
 * **Responsive Design:** Optimized for all devices from mobile to desktop
-* **Block Pattern Library:** 98+ customizable patterns including medical pages, content sections, and service layouts
+* **Block Pattern Library:** 79+ customizable patterns including medical pages, content sections, and service layouts
 
 **Perfect For:**
 
@@ -35,7 +35,7 @@ Renalinfolk is a professional WordPress block theme designed specifically for pe
 
 **Color Palette:**
 
-* Primary Blue (#135bec) - Interactive elements and links
+* Primary Blue (#359EFF) - Interactive elements and links
 * Primary Dark Green (#004d40) - Headers and emphasis
 * CTA Yellow (#FFC300) - Call-to-action buttons
 * Green-Blue (#006D77) - Accent elements
@@ -93,7 +93,7 @@ Edit template parts via Appearance > Editor > Patterns > Template Parts. The the
 * Updated all functions from twentytwentyfive_ to renalinfolk_ prefix
 * Changed text domain to renalinfolk
 * Added medical-focused pattern categories
-* Updated 98 patterns with renalinfolk namespace
+* Updated 79 patterns with renalinfolk namespace
 * Created dark mode style variation
 * Configured Lexend typography with medical-appropriate weights
 * Added rounded button styling (9999px radius)

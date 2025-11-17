@@ -252,7 +252,7 @@
 	},
 	"styles": {
 		"color": {
-			"background": "#f6f6f8",
+			"background": "var:preset|color|background-light",
 			"text": "var:preset|color|contrast"
 		},
 		"spacing": {

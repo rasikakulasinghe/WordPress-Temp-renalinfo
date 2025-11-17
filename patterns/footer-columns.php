@@ -32,7 +32,7 @@
 					<!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"medium"} -->
 					<h3 class="wp-block-heading has-medium-font-size" style="font-style:normal;font-weight:700"><?php esc_html_e( 'Stories', 'renalinfolk' ); ?></h3>
 					<!-- /wp:heading -->
-					<!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Stories', 'renalinfolk' ); ?>"} -->
+					<!-- wp:navigation {"ariaLabel":"<?php esc_attr_e( 'Footer Navigation', 'renalinfolk' ); ?>","overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Stories', 'renalinfolk' ); ?>"} -->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Blog', 'renalinfolk' ); ?>","url":"#"} /-->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'About', 'renalinfolk' ); ?>","url":"#"} /-->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'FAQs', 'renalinfolk' ); ?>","url":"#"} /-->
@@ -45,7 +45,7 @@
 					<!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"medium"} -->
 					<h3 class="wp-block-heading has-medium-font-size" style="font-style:normal;font-weight:700"><?php echo esc_html_x( 'Fleurs', 'Example brand name.', 'renalinfolk' ); ?></h3>
 					<!-- /wp:heading -->
-					<!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Featured', 'renalinfolk' ); ?>"} -->
+					<!-- wp:navigation {"ariaLabel":"<?php esc_attr_e( 'Footer Navigation', 'renalinfolk' ); ?>","overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Featured', 'renalinfolk' ); ?>"} -->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Events', 'renalinfolk' ); ?>","url":"#"} /-->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Shop', 'renalinfolk' ); ?>","url":"#"} /-->
 						<!-- wp:navigation-link {"label":"<?php esc_html_e( 'Patterns', 'renalinfolk' ); ?>","url":"#"} /-->

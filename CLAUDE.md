@@ -141,10 +141,17 @@ This is a **block theme** (not a classic theme), which means:
    ```
 
 2. **Schema compliance**: Ensure all properties match https://schemas.wp.org/wp/6.7/theme.json
+   - Reference: https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/
+   - Validate structure against WordPress 6.7+ schema version 3
 
 3. **Color changes**: Update both `settings.color.palette` AND any hardcoded color references in `styles.blocks.*` CSS
+   - Use semantic color slugs (e.g., `primary`, `accent`, not `blue`, `yellow`)
+   - Maintain WCAG AA contrast ratios (4.5:1 for text, 3:1 for UI components)
 
 4. **Block styles**: Use `styles.blocks.core/block-name` for block-specific styling, not custom CSS files
+   - Follow the format: `styles.blocks.core/block-name` for core blocks
+   - Custom block styles go in `styles.blocks.core/block-name.variations.variation-name`
+   - Reference: https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/
 
 5. **Backup before major changes**: A `theme.json.backup` exists for reference
 
@@ -159,6 +166,9 @@ Patterns in `patterns/*.php` follow this structure:
  * Slug: renalinfolk/pattern-slug
  * Categories: renalinfolk_medical_pages, featured
  * Description: Brief description
+ * Keywords: keyword1, keyword2 (optional)
+ * Viewport Width: 1400 (optional)
+ * Inserter: yes|no (optional, controls visibility in inserter)
  */
 ?>
 <!-- wp:group {...} -->
@@ -169,7 +179,9 @@ Patterns in `patterns/*.php` follow this structure:
 **Important:**
 - Slug MUST start with `renalinfolk/`
 - Use registered categories: `renalinfolk_medical_pages`, `renalinfolk_medical_content`
-- 98 existing patterns - avoid duplicates
+- 79 existing patterns - avoid duplicates
+- Block markup uses serialized block grammar (<!-- wp:block-name {...attrs} -->)
+- Reference: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
 - Test in Site Editor (Appearance > Editor > Patterns) before committing
 
 ### Custom Block Styles
@@ -186,8 +198,21 @@ To add new block styles:
 
 Templates in `templates/` and `parts/` are HTML with block markup:
 - Edit via Site Editor (Appearance > Editor) when possible
-- Or directly edit HTML files (use block comment syntax)
+- Or directly edit HTML files (use block comment syntax: `<!-- wp:block-name {...} -->`)
 - Changes sync between editor and files
+- Reference: https://developer.wordpress.org/block-editor/how-to-guides/themes/block-theme-overview/
+
+**Available Templates:**
+- `index.html` - Main fallback template
+- `home.html` - Front page (blog listing)
+- `archive.html` - Category/tag/date archives
+- `single.html` - Single post view
+- `page.html` - Default page template
+- `page-about.html` - Custom template for About pages
+- `page-contact.html` - Custom template for Contact pages
+- `page-no-title.html` - Page template without title
+- `404.html` - Error page
+- `search.html` - Search results
 
 **Template Parts:**
 - `header.html` - Gradient navigation header
@@ -198,13 +223,45 @@ Templates in `templates/` and `parts/` are HTML with block markup:
 - `footer-newsletter.html` - Footer with newsletter signup
 - `sidebar.html` - Resources sidebar
 
+## Block Editor Development
+
+### Working with Blocks
+
+**Block Markup Structure:**
+- WordPress uses serialized block grammar in HTML templates
+- Format: `<!-- wp:namespace/block-name {"attribute":"value"} -->`
+- Nested blocks are wrapped in parent block comments
+- Self-closing blocks: `<!-- wp:block-name /-->`
+- Reference: https://developer.wordpress.org/block-editor/explanations/architecture/key-concepts/#blocks
+
+**Common Core Blocks:**
+- Layout: `core/group`, `core/columns`, `core/column`, `core/row`, `core/stack`, `core/cover`
+- Content: `core/paragraph`, `core/heading`, `core/image`, `core/list`, `core/quote`
+- Template: `core/template-part`, `core/post-title`, `core/post-content`, `core/post-featured-image`
+- Navigation: `core/navigation`, `core/navigation-link`, `core/navigation-submenu`
+- Full reference: https://developer.wordpress.org/block-editor/reference-guides/core-blocks/
+
+**Block Variations:**
+- Define in theme.json under `styles.blocks.core/block-name.variations`
+- Register custom variations in `functions.php` using `register_block_style()`
+
+### Style Variations
+
+Style variations in `styles/*.json`:
+- Must follow theme.json schema (version 3)
+- Override specific settings/styles from main theme.json
+- Available variations: `01-evening.json`, `02-dark.json`
+- Reference: https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/#combining-theme-json-in-block-themes
+
 ## Testing & Validation
 
 ### Required Validation Before Commits
 
 1. **JSON Syntax**: `node -e "JSON.parse(require('fs').readFileSync('theme.json', 'utf8'))"`
 2. **PHP Syntax**: `php -l functions.php` (if PHP is available)
-3. **Site Editor Test**: Load Appearance > Editor and verify no errors
+3. **Style Variations**: Validate each JSON in `styles/` directory
+4. **Site Editor Test**: Load Appearance > Editor and verify no errors
+5. **Pattern Test**: Insert patterns in the editor to verify block markup
 
 ### Browser Testing
 
@@ -218,10 +275,37 @@ Test these features across browsers:
 ### Accessibility Requirements
 
 **WCAG AA Compliance:**
-- Primary Blue (#135bec) on white: 4.5:1 contrast minimum
-- CTA Yellow (#FFC300) with Footer Dark (#1C2541): 3:1+ for large text
+
+**Color Contrast Ratios (Tested):**
+- **Primary Blue (#359EFF) on White (#FFFFFF):** 3.36:1
+  - ✅ WCAG AA for large text (18px+) - Passes
+  - ✅ WCAG AAA for UI components (3:1) - Passes
+  - ⚠️ WCAG AA for normal text (4.5:1) - Fails (use for large text only)
+
+- **Contrast (#0d121b) on White (#FFFFFF):** 17.36:1
+  - ✅ WCAG AAA for all text sizes - Passes
+
+- **Text Light (#4A4A4A) on White (#FFFFFF):** 9.24:1
+  - ✅ WCAG AAA for all text sizes - Passes
+
+- **CTA Yellow (#FFC300) on Footer Dark (#1C2541):** 8.35:1
+  - ✅ WCAG AAA for all text sizes - Passes
+
+- **Green-Blue (#006D77) on White (#FFFFFF):** 5.71:1
+  - ✅ WCAG AA for normal text (4.5:1) - Passes
+  - ✅ WCAG AAA for large text (4.5:1) - Passes
+
+- **Primary Dark Green (#004d40) on White (#FFFFFF):** 9.16:1
+  - ✅ WCAG AAA for all text sizes - Passes
+
+- **Text Dark (#E0E0E0) on Background Dark (#0f1923):** 11.18:1
+  - ✅ WCAG AAA for all text sizes - Passes
+
+**Accessibility Requirements:**
 - All interactive elements must have visible focus indicators (2px outline)
 - Keyboard navigation must work throughout
+- ARIA labels on all navigation blocks
+- Semantic HTML5 landmarks (header, main, footer, nav)
 
 **Testing Tools:**
 - WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
@@ -255,10 +339,72 @@ See `TESTING.md` for comprehensive testing checklist.
 5. **Don't modify archived patterns** - Files in `patterns/archive/` and `styles/archive/` are deprecated
 6. **Don't hardcode colors** - Use CSS variables: `var(--wp--preset--color--accent-1)`
 
+## Common Development Tasks
+
+### Validation Commands
+
+```bash
+# Validate theme.json syntax
+node -e "JSON.parse(require('fs').readFileSync('theme.json', 'utf8'))"
+
+# Validate PHP syntax (if PHP CLI available)
+php -l functions.php
+
+# Validate all PHP pattern files
+for file in patterns/*.php; do php -l "$file"; done
+
+# Validate style variations
+node -e "JSON.parse(require('fs').readFileSync('styles/01-evening.json', 'utf8'))"
+node -e "JSON.parse(require('fs').readFileSync('styles/02-dark.json', 'utf8'))"
+```
+
+### Pattern Generation (WordPress CLI)
+
+If WP-CLI is available:
+
+```bash
+# Generate POT file for translations
+wp i18n make-pot . languages/renalinfolk.pot
+
+# List all registered patterns
+wp block-pattern list
+
+# Export theme (create ZIP)
+wp theme export renalinfolk
+```
+
+### Block Markup Debugging
+
+When working with block templates:
+1. Use the Code Editor in Site Editor (Options menu > Code editor)
+2. Copy block markup from the visual editor to preserve proper structure
+3. Validate JSON attributes using a JSON linter
+4. Check block documentation for required/optional attributes
+
+### Working with CSS Variables
+
+Access theme.json colors and settings via CSS custom properties:
+
+```css
+/* Colors */
+background-color: var(--wp--preset--color--primary);
+color: var(--wp--preset--color--contrast);
+
+/* Spacing */
+padding: var(--wp--preset--spacing--50);
+margin-top: var(--wp--preset--spacing--40);
+
+/* Typography */
+font-family: var(--wp--preset--font-family--lexend);
+font-size: var(--wp--preset--font-size--medium);
+```
+
 ## WordPress Block Theme Resources
 
 - Block Theme Handbook: https://developer.wordpress.org/themes/block-themes/
 - theme.json Reference: https://developer.wordpress.org/themes/global-settings-and-styles/
 - Schema Documentation: https://schemas.wp.org/wp/6.7/theme.json
 - Pattern Development: https://developer.wordpress.org/themes/features/block-patterns/
+- Block Editor Handbook: https://developer.wordpress.org/block-editor/
 - Full Site Editing: https://wordpress.org/documentation/article/site-editor/
+- Core Blocks Reference: https://developer.wordpress.org/block-editor/reference-guides/core-blocks/

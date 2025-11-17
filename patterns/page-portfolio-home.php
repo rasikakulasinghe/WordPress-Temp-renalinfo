@@ -2,7 +2,7 @@
 /**
  * Title: Portfolio homepage
  * Slug: renalinfolk/page-portfolio-home
- * Categories: renalinfolk_page, posts
+ * Categories: renalinfolk_medical_pages, posts
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template

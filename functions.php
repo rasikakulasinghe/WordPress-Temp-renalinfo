@@ -55,17 +55,6 @@ if ( ! function_exists( 'renalinfolk_enqueue_styles' ) ) :
 			array(),
 			wp_get_theme()->get( 'Version' )
 		);
-
-		// Enqueue Material Symbols Outlined from Google Fonts CDN.
-		// TODO: Self-host this font for better performance, privacy (GDPR compliance),
-		// and to add Subresource Integrity (SRI) protection.
-		// Download from: https://fonts.google.com/icons
-		wp_enqueue_style(
-			'material-symbols-outlined',
-			'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap',
-			array(),
-			null
-		);
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_styles' );
@@ -131,6 +120,14 @@ if ( ! function_exists( 'renalinfolk_pattern_categories' ) ) :
 			array(
 				'label'       => __( 'Medical Content', 'renalinfolk' ),
 				'description' => __( 'Content sections for articles, publications, and patient resources.', 'renalinfolk' ),
+			)
+		);
+
+		register_block_pattern_category(
+			'renalinfolk_post-format',
+			array(
+				'label'       => __( 'Post Formats', 'renalinfolk' ),
+				'description' => __( 'Patterns for different post format types (audio, link, etc.).', 'renalinfolk' ),
 			)
 		);
 	}

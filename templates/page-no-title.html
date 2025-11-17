@@ -1,9 +1,11 @@
-<!-- wp:template-part {"slug":"header"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"}}}} -->
-<main class="wp-block-group" style="margin-top:0">
-	<!-- wp:post-content {"lock":{"move":false,"remove":true},"layout":{"type":"constrained"}} /-->
+<!-- wp:group {"tagName":"main","metadata":{"name":"<?php esc_attr_e( 'Main Content', 'renalinfolk' ); ?>"},"align":"full","layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull">
+
+	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+
 </main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

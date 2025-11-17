@@ -2,7 +2,7 @@
 /**
  * Title: CV/bio
  * Slug: renalinfolk/page-cv-bio
- * Categories: renalinfolk_page, about, featured
+ * Categories: renalinfolk_medical_pages, about, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Viewport width: 1400

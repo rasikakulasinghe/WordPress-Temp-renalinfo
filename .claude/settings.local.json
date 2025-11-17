@@ -11,7 +11,9 @@
       "Bash(NUL)",
       "Bash(mkdir:*)",
       "Bash(openspec validate:*)",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(openspec proposal:*)"
     ],
     "deny": [],
     "ask": []

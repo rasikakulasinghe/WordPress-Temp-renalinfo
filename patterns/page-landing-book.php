@@ -2,7 +2,7 @@
 /**
  * Title: Landing page for book
  * Slug: renalinfolk/page-landing-book
- * Categories: renalinfolk_page, featured
+ * Categories: renalinfolk_medical_pages, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template
