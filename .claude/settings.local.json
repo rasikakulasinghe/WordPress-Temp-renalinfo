@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec list:*)",
+      "Bash(openspec show:*)",
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(/dev/null)",
+      "Bash(node -e:*)",
+      "Bash(php -l:*)",
+      "Bash(NUL)",
+      "Bash(mkdir:*)",
+      "Bash(openspec validate:*)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
