@@ -799,11 +799,6 @@
 			"area": "footer",
 			"name": "footer-newsletter",
 			"title": "Footer: Newsletter Signup"
-		},
-		{
-			"area": "uncategorized",
-			"name": "sidebar",
-			"title": "Sidebar: Resources"
 		}
 	],
 	"customTemplates": [

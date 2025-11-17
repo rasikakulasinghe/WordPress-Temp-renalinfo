@@ -9,20 +9,35 @@
  * @since Renalinfolk 2.0
  */
 
-// Adds theme support for post formats.
-if ( ! function_exists( 'renalinfolk_post_format_setup' ) ) :
+// Theme setup.
+if ( ! function_exists( 'renalinfolk_theme_setup' ) ) :
 	/**
-	 * Adds theme support for post formats.
+	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
 	 * @since Renalinfolk 2.0
 	 *
 	 * @return void
 	 */
-	function renalinfolk_post_format_setup() {
+	function renalinfolk_theme_setup() {
+		// Add support for block styles.
+		add_theme_support( 'wp-block-styles' );
+
+		// Add support for editor styles.
+		add_theme_support( 'editor-styles' );
+
+		// Add support for post formats.
 		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video' ) );
+
+		// Register navigation menus.
+		register_nav_menus(
+			array(
+				'primary' => __( 'Primary Navigation', 'renalinfolk' ),
+				'footer'  => __( 'Footer Navigation', 'renalinfolk' ),
+			)
+		);
 	}
 endif;
-add_action( 'after_setup_theme', 'renalinfolk_post_format_setup' );
+add_action( 'after_setup_theme', 'renalinfolk_theme_setup' );
 
 // Enqueues editor-style.css in the editors.
 if ( ! function_exists( 'renalinfolk_editor_style' ) ) :
@@ -58,6 +73,27 @@ if ( ! function_exists( 'renalinfolk_enqueue_styles' ) ) :
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_styles' );
+
+// Enqueues Material Icons font.
+if ( ! function_exists( 'renalinfolk_enqueue_material_icons' ) ) :
+	/**
+	 * Enqueues Material Icons font on the front.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_enqueue_material_icons() {
+		wp_enqueue_style(
+			'material-symbols-outlined',
+			'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200',
+			array(),
+			null
+		);
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_material_icons' );
+add_action( 'admin_enqueue_scripts', 'renalinfolk_enqueue_material_icons' );
 
 // Registers custom block styles.
 if ( ! function_exists( 'renalinfolk_block_styles' ) ) :
