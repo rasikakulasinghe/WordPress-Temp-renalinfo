@@ -816,6 +816,11 @@
 			"name": "page-about",
 			"postTypes": ["page"],
 			"title": "About Us"
+		},
+		{
+			"name": "single",
+			"postTypes": ["post"],
+			"title": "Single"
 		}
 	]
 }

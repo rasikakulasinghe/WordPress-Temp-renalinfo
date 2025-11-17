@@ -71,6 +71,11 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-2px);
 }
 
+/* Post content card styling */
+.post-content-card {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 /* News card hover effects */
 .news-card {
 	transition: box-shadow 0.3s ease, transform 0.2s ease;
