@@ -87,6 +87,16 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-4px);
 }
 
+/* Article card hover effects */
+.article-card {
+	transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.article-card:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+	transform: translateY(-2px);
+}
+
 /* Header gradient - uses CSS custom properties with fallback */
 .header-gradient {
 	background: linear-gradient(135deg, var(--wp--preset--color--green-blue) 0%, var(--wp--preset--color--footer-dark) 100%);
@@ -115,4 +125,31 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	direction: ltr;
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
+}
+
+/* Social Links Icon Visibility Fix */
+.wp-block-social-links .wp-social-link svg,
+.wp-block-social-links .wp-social-link {
+	width: 24px;
+	height: 24px;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+.wp-block-social-links.has-icon-color .wp-social-link svg {
+	fill: currentColor;
+	color: inherit;
+}
+
+.wp-block-social-links .wp-social-link-facebook,
+.wp-block-social-links .wp-social-link-x,
+.wp-block-social-links .wp-social-link-whatsapp,
+.wp-block-social-links .wp-social-link-threads,
+.wp-block-social-links .wp-social-link-instagram,
+.wp-block-social-links .wp-social-link-mail,
+.wp-block-social-links .wp-social-link-linkedin,
+.wp-block-social-links .wp-social-link-chain {
+	background-color: transparent !important;
+	color: var(--wp--preset--color--primary) !important;
 }

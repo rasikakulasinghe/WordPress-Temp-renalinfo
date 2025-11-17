@@ -12,48 +12,18 @@
  */
 
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"margin":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"className":"site-header","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull site-header" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+<!-- wp:group {"align":"full","className":"header-gradient","style":{"spacing":{"padding":{"top":"15px","bottom":"15px","left":"0","right":"0"}},"elements":{"link":{"color":{"text":"#ffffff"}}}},"backgroundColor":"footer-dark","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group alignfull header-gradient has-footer-dark-background-color has-background has-link-color" style="padding-top:15px;padding-right:0;padding-bottom:15px;padding-left:0"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:site-logo {"width":50} /-->
 
-	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"1.25rem","bottom":"1.25rem","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"backgroundColor":"footer-dark","className":"header-gradient","layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull header-gradient has-footer-dark-background-color has-background has-link-color" style="padding-top:1.25rem;padding-right:var(--wp--preset--spacing--50);padding-bottom:1.25rem;padding-left:var(--wp--preset--spacing--50)">
+<!-- wp:site-title /--></div>
+<!-- /wp:group -->
 
-		<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-		<div class="wp-block-group alignwide">
+<!-- wp:group {"style":{"spacing":{"blockGap":"2rem"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
+<div class="wp-block-group"><!-- wp:navigation {"ref":4,"textColor":"secondary","overlayBackgroundColor":"green-blue","overlayTextColor":"secondary","layout":{"type":"flex","justifyContent":"right"}} /-->
 
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0.75rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-			<div class="wp-block-group">
-
-				<!-- wp:html -->
-				<span class="material-symbols-outlined" style="color: var(--wp--preset--color--base); font-size: 2rem;" aria-hidden="true">health_and_safety</span>
-				<!-- /wp:html -->
-
-				<!-- wp:site-title {"level":0,"style":{"typography":{"fontSize":"1.25rem","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base"} /-->
-
-			</div>
-			<!-- /wp:group -->
-
-			<!-- wp:group {"style":{"spacing":{"blockGap":"2rem"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"}} -->
-			<div class="wp-block-group">
-
-				<!-- wp:navigation {"ref":1,"ariaLabel":"<?php esc_attr_e( 'Main Navigation', 'renalinfolk' ); ?>","textColor":"base","overlayBackgroundColor":"footer-dark","overlayTextColor":"base","style":{"typography":{"fontSize":"0.875rem","fontWeight":"700"},"spacing":{"blockGap":"2rem"}},"layout":{"type":"flex","justifyContent":"right","flexWrap":"wrap"}} -->
-					<!-- wp:navigation-link {"label":"<?php esc_attr_e( 'Home', 'renalinfolk' ); ?>","url":"#","kind":"custom","isTopLevelLink":true} /-->
-					<!-- wp:navigation-link {"label":"<?php esc_attr_e( 'About', 'renalinfolk' ); ?>","url":"#","kind":"custom","isTopLevelLink":true} /-->
-					<!-- wp:navigation-link {"label":"<?php esc_attr_e( 'Services', 'renalinfolk' ); ?>","url":"#","kind":"custom","isTopLevelLink":true} /-->
-					<!-- wp:navigation-link {"label":"<?php esc_attr_e( 'Resources', 'renalinfolk' ); ?>","url":"#","kind":"custom","isTopLevelLink":true} /-->
-					<!-- wp:navigation-link {"label":"<?php esc_attr_e( 'Contact', 'renalinfolk' ); ?>","url":"#","kind":"custom","isTopLevelLink":true} /-->
-				<!-- /wp:navigation -->
-
-				<!-- wp:search {"label":"<?php esc_attr_e( 'Search', 'renalinfolk' ); ?>","showLabel":false,"placeholder":"<?php esc_attr_e( 'Search resources...', 'renalinfolk' ); ?>","width":240,"widthUnit":"px","buttonText":"<?php esc_attr_e( 'Search', 'renalinfolk' ); ?>","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"border":{"radius":"9999px"}}} /-->
-
-			</div>
-			<!-- /wp:group -->
-
-		</div>
-		<!-- /wp:group -->
-
-	</div>
-	<!-- /wp:group -->
-
-</div>
+<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search resources...","width":240,"widthUnit":"px","buttonText":"Search","buttonPosition":"no-button","buttonUseIcon":true,"style":{"border":{"radius":"9999px"}}} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->

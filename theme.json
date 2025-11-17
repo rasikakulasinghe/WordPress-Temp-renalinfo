@@ -664,6 +664,27 @@
 			"core/list": {
 				"css": "& li{margin-top: 0.5rem;}"
 			},
+			"core/social-links": {
+				"spacing": {
+					"blockGap": "var:preset|spacing|30"
+				},
+				"color": {
+					"background": "transparent",
+					"text": "var:preset|color|primary"
+				}
+			},
+			"core/social-link": {
+				"color": {
+					"background": "transparent",
+					"text": "var:preset|color|primary"
+				},
+				":hover": {
+					"color": {
+						"background": "color-mix(in srgb, var(--wp--preset--color--primary) 10%, transparent)",
+						"text": "color-mix(in srgb, var(--wp--preset--color--primary) 80%, transparent)"
+					}
+				}
+			},
 			"core/post-template": {
 				"css": "& .wp-block-post { background: var(--wp--preset--color--base); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); padding: var(--wp--preset--spacing--50); transition: all 0.2s ease; } & .wp-block-post:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }"
 			}
@@ -775,30 +796,9 @@
 			"title": "Header (Gradient)"
 		},
 		{
-			"area": "header",
-			"name": "vertical-header",
-			"title": "Header: Vertical Layout"
-		},
-		{
-			"area": "header",
-			"name": "header-large-title",
-			"title": "Header: Article Layout"
-
-		},
-		{
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer (Dark)"
-		},
-		{
-			"area": "footer",
-			"name": "footer-columns",
-			"title": "Footer: Multi-Column"
-		},
-		{
-			"area": "footer",
-			"name": "footer-newsletter",
-			"title": "Footer: Newsletter Signup"
 		}
 	],
 	"customTemplates": [

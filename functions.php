@@ -28,6 +28,18 @@ if ( ! function_exists( 'renalinfolk_theme_setup' ) ) :
 		// Add support for post formats.
 		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video' ) );
 
+		// Add support for responsive embeds.
+		add_theme_support( 'responsive-embeds' );
+
+		// Add support for custom line height.
+		add_theme_support( 'custom-line-height' );
+
+		// Add support for custom spacing.
+		add_theme_support( 'custom-spacing' );
+
+		// Add support for SVG uploads (for social icons).
+		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
+
 		// Register navigation menus.
 		register_nav_menus(
 			array(
@@ -208,3 +220,55 @@ if ( ! function_exists( 'renalinfolk_format_binding' ) ) :
 		}
 	}
 endif;
+
+// Ensure social icons SVG rendering.
+if ( ! function_exists( 'renalinfolk_social_link_block_render' ) ) :
+	/**
+	 * Ensures social link blocks render SVG icons properly.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param string $block_content The block content.
+	 * @param array  $block The block data.
+	 * @return string Modified block content.
+	 */
+	function renalinfolk_social_link_block_render( $block_content, $block ) {
+		if ( 'core/social-link' === $block['blockName'] ) {
+			// Ensure the SVG icon is present and visible.
+			$block_content = str_replace( 'class="wp-block-social-link', 'class="wp-block-social-link has-icon', $block_content );
+		}
+		return $block_content;
+	}
+endif;
+add_filter( 'render_block', 'renalinfolk_social_link_block_render', 10, 2 );
+
+// Force enable SVG support for social icons.
+if ( ! function_exists( 'renalinfolk_enable_svg_support' ) ) :
+	/**
+	 * Enables SVG rendering for social media icons.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_enable_svg_support() {
+		// Add inline CSS to ensure SVG visibility.
+		$inline_css = '
+		.wp-block-social-links .wp-social-link svg {
+			display: inline-block !important;
+			visibility: visible !important;
+			opacity: 1 !important;
+			width: 1em !important;
+			height: 1em !important;
+		}
+		.wp-block-social-links .wp-social-link {
+			display: inline-flex !important;
+		}
+		.wp-block-social-links.has-icon-color .wp-social-link svg {
+			fill: currentColor !important;
+		}
+		';
+		wp_add_inline_style( 'renalinfolk-style', $inline_css );
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'renalinfolk_enable_svg_support', 20 );
