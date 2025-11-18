@@ -211,6 +211,11 @@ Templates in `templates/` and `parts/` are HTML with block markup:
 - `page-about.html` - Custom template for About pages
 - `page-contact.html` - Custom template for Contact pages
 - `page-no-title.html` - Page template without title
+- `page-article-gallery.html` - Article gallery listing
+- `gallery-image.html` - Image gallery listing page (3-column responsive grid)
+- `view-gallery.html` - Individual gallery viewer with lightbox-style navigation
+- `gallery-video.html` - Video gallery template
+- `view-video.html` - Video viewer template
 - `404.html` - Error page
 - `search.html` - Search results
 

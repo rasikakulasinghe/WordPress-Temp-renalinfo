@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Image Gallery - Pediatric Nephrology Unit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#359EFF",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                        "text-light": "#4A4A4A",
+                        "text-dark": "#E0E0E0",
+                        accent: "#FFD28E",
+                        "accent-dark": "#1d2c33",
+                        "accent-text": "#332A1C",
+                        "primary-dark": "#2E4F64",
+                        secondary: "#BDE0FE",
+                        "green-blue": "#006D77",
+                        "footer-dark": "#1C2541",
+                        "cta-yellow": "#FFC300"
+                    },
+                    fontFamily: {
+                        display: "Lexend"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .thumbnail-item[aria-current="true"] {
+             border-color: #359EFF;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 bg-gradient-to-r from-[#006D77] to-[#1C2541] shadow-md">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-3xl">health_and_safety</span>
+<h2 class="text-xl font-bold tracking-tight">Pediatric Nephrology Unit</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-white/90 hover:text-white transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-white/90 hover:text-white transition-colors" href="#">About the Unit</a>
+<a class="text-sm font-bold text-white ring-2 ring-white/50 rounded-full px-3 py-1.5" href="#">Resources</a>
+<a class="text-sm font-medium text-white/90 hover:text-white transition-colors" href="#">News &amp; Events</a>
+<a class="text-sm font-medium text-white/90 hover:text-white transition-colors" href="#">Contact Us</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full border border-gray-300 bg-white dark:bg-gray-100 h-10 placeholder:text-gray-400 text-text-light pl-10 pr-4 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-primary-dark" placeholder="Search resources..." type="search"/>
+</div>
+<button class="md:hidden flex items-center justify-center p-2 rounded-full text-white hover:bg-white/10">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+<div class="text-center mb-12">
+<h1 class="text-3xl md:text-5xl font-extrabold text-primary-dark dark:text-white tracking-tight">Our Gallery</h1>
+<p class="mt-4 text-lg text-text-light/80 dark:text-text-dark/80 max-w-3xl mx-auto">A glimpse into our unit, our team, and the community we serve. See our facilities, events, and the moments that define our commitment to pediatric care.</p>
+</div>
+<div class="w-full max-w-5xl mx-auto">
+<div class="relative">
+<div class="relative w-full aspect-[16/10] overflow-hidden rounded-xl shadow-2xl" id="main-gallery-view">
+<img alt="Friendly doctor in a sunlit pediatric clinic smiling with a young child and their parent." class="w-full h-full object-cover transition-opacity duration-500 ease-in-out" id="main-gallery-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG95in-qOCj-Oh1GYYHE78ccT9wHntOCLJTpTKEmSs1uJzVEwRqqyoPuH71UqEpseCp4LSZ8WWjL4cwa8qxJUG5aNrCJvrM9JBGihC3Oo9vvsm9YvIJDorJfnRqTe4OxLfTT8dZzq3Zula4QqEeKaIjcW8dbGmhiLlBxuHkIZRv84XT_wR43Zv8PruvUdfiPARmnu0BwIlKIgnydMDgGNt5Lw23wQwRNp1Udg-cKiUIr5WbVihCLktKHbGHuOC2ZNEnw3jQuOZPo4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 md:p-8 text-white">
+<h3 class="text-2xl md:text-3xl font-bold" id="main-gallery-title">Our Caring Team</h3>
+<p class="mt-2 text-base text-white/90" id="main-gallery-description">Dedicated professionals providing the best care.</p>
+</div>
+</div>
+<button aria-label="Previous image" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" id="prev-button">
+<span class="material-symbols-outlined text-3xl">arrow_back_ios_new</span>
+</button>
+<button aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" id="next-button">
+<span class="material-symbols-outlined text-3xl">arrow_forward_ios</span>
+</button>
+</div>
+<div class="mt-6 relative">
+<div class="flex overflow-x-auto scrollbar-hide space-x-4 p-2 -mx-2" id="thumbnail-container">
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-footer-dark text-white/90 mt-16">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+<div class="col-span-2 lg:col-span-1">
+<div class="flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-2xl">health_and_safety</span>
+<h2 class="text-lg font-bold">Pediatric Nephrology Unit</h2>
+</div>
+<p class="text-sm mt-4 text-white/80">Providing compassionate care and valuable resources for families.</p>
+</div>
+<div class="col-span-1">
+<h3 class="font-bold tracking-wide text-white">Quick Links</h3>
+<ul class="mt-4 space-y-3 text-sm">
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">About Us</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">Our Team</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">News &amp; Events</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h3 class="font-bold tracking-wide text-white">Resources</h3>
+<ul class="mt-4 space-y-3 text-sm">
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">Articles</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">Videos</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">Posters</a></li>
+<li><a class="text-white/80 hover:text-white transition-colors" href="#">FAQs</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h3 class="font-bold tracking-wide text-white">Contact Info</h3>
+<ul class="mt-4 space-y-3 text-sm text-white/80">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-base mt-0.5">location_on</span>
+<span>123 Health St, Medville, USA</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">call</span>
+<span>(123) 456-7890</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">mail</span>
+<span>contact@pednephunit.org</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row justify-between items-center text-sm text-white/60">
+<p>© 2023 Pediatric Nephrology Unit. All Rights Reserved.</p>
+<div class="flex gap-4 mt-4 sm:mt-0">
+<a class="hover:underline" href="#">Privacy Policy</a>
+<a class="hover:underline" href="#">Medical Disclaimer</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const galleryItems = [
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCG95in-qOCj-Oh1GYYHE78ccT9wHntOCLJTpTKEmSs1uJzVEwRqqyoPuH71UqEpseCp4LSZ8WWjL4cwa8qxJUG5aNrCJvrM9JBGihC3Oo9vvsm9YvIJDorJfnRqTe4OxLfTT8dZzq3Zula4QqEeKaIjcW8dbGmhiLlBxuHkIZRv84XT_wR43Zv8PruvUdfiPARmnu0BwIlKIgnydMDgGNt5Lw23wQwRNp1Udg-cKiUIr5WbVihCLktKHbGHuOC2ZNEnw3jQuOZPo4", title: "Our Caring Team", description: "Dedicated professionals providing the best care.", alt: "Friendly doctor in a sunlit pediatric clinic smiling with a young child and their parent." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDaluvq1aXk2pGYJhHzb6jX0xVMHDbOxLhUhe7cwE1_iuQEHMYEysH2N0vAIznqJeXe6VXGpC80lSuu3fSCpzSSAwH2UpfzJ1Vhf0vdAztxDUnuoHfgs8f3KL0Y_yfxN3XhWPWCtZtMpQuBAhl3Lx8CUJopTdL2X8jhxsqFWhQ96Ilt4IUh4cq5uhSRuRikBm0WE2tminZZOYAn3fGwiOoMEuyqVuzwCYN07DQaL2fD3hlCGiHPPzjNb0laOJqOsfZoTxD5wL1vhuA", title: "Advanced Research", description: "Cutting-edge research for better outcomes.", alt: "A research scientist looking into a microscope in a modern lab." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAA1lSt-C26Cz2HX6n3gDWmZW27MEfW_g-XGJBkK-tgRVF8R2SxawqffB2QYanqVQdO0dIFDCYd5w7uR2vuYEycSis-wdfiUJDZ_3zxqzKFjGy-KG6T9NzbCwqek_RzzjBsZ1l3t2d-GrTcI-DJ0h-6V1aE5ErzEcxOvszYrriRcX-fYyrFkMRaX450xLI8msbgAa0sUEOtK33o5gLPhPv9oXiqm0oWYwTCVzQkyniRsyA9SzkCUFR6nT22vlkZcXER1YWGDdPQiMA", title: "Our Staff", description: "A dedicated team working together for patient health.", alt: "Group of smiling hospital staff standing together in a hallway." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAmOqIu7aQVURBgEloGmR7M8fQWBsIe3rDGk6MTF-QG9Mqb4aXAclyyYHKKpkDYK7WJSqAas8dLL5NHiNztzEzMaXUKQLtvhC4XuIxHkVc1FZ3oluSRFxgcRh46z9vq13Eav708oemzrcNCyIvkGm2U8l1nxWbQe6U_HHhpTCh4xd1B8ZJLhvzKWyzZ2gMqZt9tqjmhdk6jKC4Z20MpwInuf5kNvc1eN-y1MJr7PBADrYVSyv8sybQ__NmMCYheBWkt_vHBKbSnPrk", title: "Patient Activities", description: "Engaging activities for our young patients.", alt: "Child painting a kidney on a canvas at a hospital event." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVgm09C9VYMwOgwgJqw1c77TZ6LK4ezZEU8Pnj9dduK7vsN4CtM-ve-BfIYPUMUyNZW3LUocxaKCX6JCM2KSMBwnckV27hegIDc43tmxhWSeEESPF1U_UFS3gby3vNxFurnBqNBR8aQONcF5MkAN1dHficvlCnAJLA6AK50h4-LJWFFZOfQNRltamD450jZL1mzj7v-Eoc-cNFQxlvothoMyMnsndth4PBZkpI_JQ0nJQbYwkG4gwX11xYXt1mk3pSSSfpHOXQQo0", title: "Community Art", description: "Creative expressions inspired by our community.", alt: "An illustration of a kidney with colorful flowers growing from it, symbolizing health." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDqSWRdpqn10bFOESZciHTBE7wXezGnQIQGGCqXxqYzL6B9sf4YAP2Ov7m8C2b44mMPcFq3usoHj83onJzJ9bS9PTJQPkM_f9AdrLF3N7OrCXKbV0HdccEg1XcFjuZ-SI8HmLr8-Z_gT6HfyaCuyoYJmh4v4ti6TObvLYymDRrlBUpOASP0cWPukpQDwdyyuW31s8Fxtp5WHL0olBojPoFzNSTJZoo97O80byrCuqk-h8qsWdQVSBPqE9eU1UVb5hPVGwUJ-kQdl1Q", title: "Our Facilities", description: "Modern and welcoming spaces for healing.", alt: "Modern and clean hospital waiting room with colorful chairs." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDWLf--P169dVyrvujNTfdbNPTPEgQtACzodpwkReRxdj12umPuLqM_iH9pTym_UB4A7a8novjWyzqz4HpU43YEoe-8TEjC6jeDso-xvWOCvveH5iETETB6H6nDdjn6yWWOjhH7FfuRHxykVrLPRzOe8gU3-s3v92Hs7hjxyeSAMgH4XGaVFXpcjglehOylqxN3IYFh7a8b3t13rRWmTCxG5MF9YS57iEQH_oXQSEYxS2X1K704yk2lYSGGhKJNZ6GiOSUc7lAsH_M", title: "Health Fair", description: "Promoting health and wellness in the community.", alt: "Children and doctors at a community health fair." },
+            { src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAiE263mAAvO9PYmgHhFpxr0ASr-3d4Z8am_tSfdrSOoFMYn23NuBMwTZatohlOzAVNR2IDmawIQPPdjEy4EM94qHUHIJ968gSYLzn3rjtHQdh-nB_EqoEQzXulpC7mV1BPLlPrCEsMgyYTwS3UemIAezOEm_Mxcsd8yeYG5Ed4GZqn_4WbGZ0FQMdqrEOkjk07ytusVtrXVeN-zmIzFEr4WuooXEk_FcwlushkN1XD-mMleDlYMPPQ71Kt9I4kPlm9lt_0IqlbFhQ", title: "Our Unit Building", description: "The welcoming entrance to our pediatric unit.", alt: "Exterior of the pediatric nephrology unit building on a sunny day." }
+        ];
+        let currentIndex = 0;
+        const mainImage = document.getElementById('main-gallery-image');
+        const mainTitle = document.getElementById('main-gallery-title');
+        const mainDescription = document.getElementById('main-gallery-description');
+        const thumbnailContainer = document.getElementById('thumbnail-container');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        function updateGallery(index, smoothScroll = true) {
+            if (index < 0) {
+                index = galleryItems.length - 1;
+            } else if (index >= galleryItems.length) {
+                index = 0;
+            }
+            currentIndex = index;
+            const item = galleryItems[currentIndex];
+            // Fade out
+            mainImage.style.opacity = 0;
+            setTimeout(() => {
+                mainImage.src = item.src;
+                mainImage.alt = item.alt;
+                mainTitle.textContent = item.title;
+                mainDescription.textContent = item.description;
+                // Fade in
+                mainImage.style.opacity = 1;
+            }, 300);
+            document.querySelectorAll('.thumbnail-item').forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.setAttribute('aria-current', 'true');
+                    if (smoothScroll) {
+                        thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
+                } else {
+                    thumb.removeAttribute('aria-current');
+                }
+            });
+        }
+        function createThumbnails() {
+            galleryItems.forEach((item, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = "thumbnail-item flex-shrink-0 w-32 h-20 md:w-40 md:h-24 rounded-lg overflow-hidden cursor-pointer shadow-md border-4 border-transparent hover:border-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary";
+                thumb.dataset.index = index;
+                thumb.setAttribute('tabindex', '0');
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = `Thumbnail for ${item.title}`;
+                img.className = 'w-full h-full object-cover';
+                thumb.appendChild(img);
+                thumbnailContainer.appendChild(thumb);
+                thumb.addEventListener('click', () => updateGallery(index));
+                thumb.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        updateGallery(index);
+                    }
+                });
+            });
+        }
+        prevButton.addEventListener('click', () => updateGallery(currentIndex - 1));
+        nextButton.addEventListener('click', () => updateGallery(currentIndex + 1));
+        createThumbnails();
+        updateGallery(0, false);
+    });
+</script>
+
+</body></html>
