@@ -1,0 +1,6 @@
+{
+    "markdownlint.run": "onType",
+    "markdownlint.config": {
+
+    }
+}

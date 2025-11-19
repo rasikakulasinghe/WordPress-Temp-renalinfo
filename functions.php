@@ -272,3 +272,248 @@ if ( ! function_exists( 'renalinfolk_enable_svg_support' ) ) :
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enable_svg_support', 20 );
+
+// Register custom meta fields for video posts.
+if ( ! function_exists( 'renalinfolk_register_video_meta_fields' ) ) :
+	/**
+	 * Registers custom meta fields for video posts (URL and duration).
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_register_video_meta_fields() {
+		// Register video URL field.
+		register_post_meta(
+			'post',
+			'renalinfolk_video_url',
+			array(
+				'show_in_rest'      => true,
+				'single'            => true,
+				'type'              => 'string',
+				'description'       => __( 'Video URL (YouTube, Vimeo, etc.) for video format posts', 'renalinfolk' ),
+				'sanitize_callback' => 'esc_url_raw',
+				'auth_callback'     => function() {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+
+		// Register video duration field.
+		register_post_meta(
+			'post',
+			'renalinfolk_video_duration',
+			array(
+				'show_in_rest'      => true,
+				'single'            => true,
+				'type'              => 'string',
+				'description'       => __( 'Video duration (e.g., 5:30, 12 min) for video format posts', 'renalinfolk' ),
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => function() {
+					return current_user_can( 'edit_posts' );
+				},
+			)
+		);
+	}
+endif;
+add_action( 'init', 'renalinfolk_register_video_meta_fields' );
+
+// Filter gallery queries by category, tag, and sorting.
+if ( ! function_exists( 'renalinfolk_filter_gallery_query' ) ) :
+	/**
+	 * Filters the query for gallery pages based on URL parameters.
+	 * Handles category filtering, tag filtering, and custom sorting.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param WP_Query $query The WordPress query object.
+	 * @return void
+	 */
+	function renalinfolk_filter_gallery_query( $query ) {
+		// Only modify main query on gallery templates, not in admin.
+		if ( is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+
+		// Get current page template.
+		$template_slug = get_page_template_slug();
+
+		// Handle gallery-image page.
+		if ( 'gallery-image' === $template_slug || is_page_template( 'templates/gallery-image.html' ) ) {
+			// Set category to 'gallery-image'.
+			$query->set( 'category_name', 'gallery-image' );
+		}
+
+		// Handle gallery-video page.
+		if ( 'gallery-video' === $template_slug || is_page_template( 'templates/gallery-video.html' ) ) {
+			// Set category to 'gallery-video'.
+			$query->set( 'category_name', 'gallery-video' );
+		}
+
+		// Handle tag filtering from URL parameter (?tag=event).
+		if ( isset( $_GET['tag'] ) && ! empty( $_GET['tag'] ) ) {
+			$tag = sanitize_text_field( wp_unslash( $_GET['tag'] ) );
+			$query->set( 'tag', $tag );
+		}
+
+		// Handle custom sorting from URL parameters (?orderby=date&order=desc).
+		if ( isset( $_GET['orderby'] ) && ! empty( $_GET['orderby'] ) ) {
+			$orderby = sanitize_text_field( wp_unslash( $_GET['orderby'] ) );
+
+			// Allowed orderby values.
+			$allowed_orderby = array( 'date', 'title', 'comment_count', 'modified', 'rand' );
+
+			if ( in_array( $orderby, $allowed_orderby, true ) ) {
+				$query->set( 'orderby', $orderby );
+			}
+		}
+
+		if ( isset( $_GET['order'] ) && ! empty( $_GET['order'] ) ) {
+			$order = sanitize_text_field( wp_unslash( $_GET['order'] ) );
+
+			// Only allow ASC or DESC.
+			if ( in_array( strtoupper( $order ), array( 'ASC', 'DESC' ), true ) ) {
+				$query->set( 'order', strtoupper( $order ) );
+			}
+		}
+	}
+endif;
+add_action( 'pre_get_posts', 'renalinfolk_filter_gallery_query' );
+
+// Enqueue video embed script.
+if ( ! function_exists( 'renalinfolk_enqueue_video_embed_script' ) ) :
+	/**
+	 * Enqueues JavaScript to convert video URLs to embedded iframes.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_enqueue_video_embed_script() {
+		if ( is_singular( 'post' ) && has_post_format( 'video' ) ) {
+			wp_enqueue_script(
+				'renalinfolk-video-embed',
+				get_template_directory_uri() . '/assets/js/video-embed.js',
+				array(),
+				wp_get_theme()->get( 'Version' ),
+				true
+			);
+		}
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_video_embed_script' );
+
+// Enqueue video meta editor script in the block editor.
+if ( ! function_exists( 'renalinfolk_enqueue_video_meta_editor' ) ) :
+	/**
+	 * Enqueues JavaScript to add video meta fields UI in the block editor.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_enqueue_video_meta_editor() {
+		wp_enqueue_script(
+			'renalinfolk-video-meta-editor',
+			get_template_directory_uri() . '/assets/js/video-meta-editor.js',
+			array(
+				'wp-plugins',
+				'wp-edit-post',
+				'wp-element',
+				'wp-components',
+				'wp-data',
+			),
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
+	}
+endif;
+add_action( 'enqueue_block_editor_assets', 'renalinfolk_enqueue_video_meta_editor' );
+
+// Render video embed from custom field.
+if ( ! function_exists( 'renalinfolk_render_video_embed' ) ) :
+	/**
+	 * Renders video embed block with URL from custom field.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param string $block_content The block content.
+	 * @param array  $block The block data.
+	 * @return string Modified block content.
+	 */
+	function renalinfolk_render_video_embed( $block_content, $block ) {
+		// Only process embed blocks with our custom binding
+		if ( 'core/embed' !== $block['blockName'] ) {
+			return $block_content;
+		}
+
+		// Check if this block has our video URL binding
+		$has_video_binding = isset( $block['attrs']['metadata']['bindings']['url']['args']['key'] ) 
+			&& 'renalinfolk_video_url' === $block['attrs']['metadata']['bindings']['url']['args']['key'];
+
+		if ( ! $has_video_binding ) {
+			return $block_content;
+		}
+
+		// Get the video URL from post meta
+		$video_url = get_post_meta( get_the_ID(), 'renalinfolk_video_url', true );
+
+		if ( empty( $video_url ) ) {
+			return '<div class="wp-block-embed__wrapper" style="padding: 2rem; background: #f5f7f8; border-radius: 8px; text-align: center; color: #4A4A4A;">
+				<p>No video URL provided. Please add a video URL in the post editor.</p>
+			</div>';
+		}
+
+		// Use WordPress oEmbed to get the embed HTML
+		$embed_html = wp_oembed_get( $video_url, array( 'width' => 800 ) );
+
+		if ( false === $embed_html ) {
+			// Fallback: create manual embed for YouTube/Vimeo
+			$embed_html = renalinfolk_create_manual_embed( $video_url );
+		}
+
+		// Wrap in proper WordPress embed structure
+		return sprintf(
+			'<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">%s</div></figure>',
+			$embed_html
+		);
+	}
+endif;
+add_filter( 'render_block', 'renalinfolk_render_video_embed', 10, 2 );
+
+// Create manual video embed.
+if ( ! function_exists( 'renalinfolk_create_manual_embed' ) ) :
+	/**
+	 * Creates manual iframe embed for YouTube or Vimeo URLs.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param string $url Video URL.
+	 * @return string Embed HTML.
+	 */
+	function renalinfolk_create_manual_embed( $url ) {
+		// Extract YouTube ID
+		if ( preg_match( '/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\?\/]+)/', $url, $youtube_match ) ) {
+			$video_id = $youtube_match[1];
+			return sprintf(
+				'<iframe width="800" height="450" src="https://www.youtube.com/embed/%s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>',
+				esc_attr( $video_id )
+			);
+		}
+
+		// Extract Vimeo ID
+		if ( preg_match( '/vimeo\.com\/(\d+)/', $url, $vimeo_match ) ) {
+			$video_id = $vimeo_match[1];
+			return sprintf(
+				'<iframe src="https://player.vimeo.com/video/%s" width="800" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>',
+				esc_attr( $video_id )
+			);
+		}
+
+		// Fallback: display link
+		return sprintf(
+			'<p style="padding: 2rem; background: #f5f7f8; border-radius: 8px; text-align: center;"><a href="%s" target="_blank" rel="noopener noreferrer" style="color: #359EFF; text-decoration: none; font-weight: 600;">Watch Video →</a></p>',
+			esc_url( $url )
+		);
+	}
+endif;

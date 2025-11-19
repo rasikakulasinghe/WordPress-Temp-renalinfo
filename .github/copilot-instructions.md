@@ -200,6 +200,7 @@ Templates in `templates/` and `parts/` are HTML with block markup:
 - Edit via Site Editor (Appearance > Editor) when possible
 - Or directly edit HTML files (use block comment syntax: `<!-- wp:block-name {...} -->`)
 - Changes sync between editor and files
+- **IMPORTANT**: WordPress block templates (.html files) should NOT contain PHP code. Block templates use HTML comment syntax for dynamic content, not PHP tags.
 - Reference: https://developer.wordpress.org/block-editor/how-to-guides/themes/block-theme-overview/
 
 **Available Templates:**
@@ -213,9 +214,9 @@ Templates in `templates/` and `parts/` are HTML with block markup:
 - `page-no-title.html` - Page template without title
 - `page-article-gallery.html` - Article gallery listing
 - `gallery-image.html` - Image gallery listing page (3-column responsive grid)
-- `view-gallery.html` - Individual gallery viewer with lightbox-style navigation
+- `view-image-gallery.html` - Individual gallery viewer with lightbox-style navigation
 - `gallery-video.html` - Video gallery template
-- `view-video.html` - Video viewer template
+- `view-video-gallery.html` - Video viewer template
 - `404.html` - Error page
 - `search.html` - Search results
 

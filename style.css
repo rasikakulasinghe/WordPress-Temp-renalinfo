@@ -87,6 +87,33 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-4px);
 }
 
+/* Video card hover effects */
+.video-card {
+	transition: box-shadow 0.3s ease, transform 0.2s ease;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+}
+
+.video-card:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18), 0 6px 10px rgba(0, 0, 0, 0.12);
+	transform: translateY(-4px);
+}
+
+/* Video card button styling - full width read-more as button */
+.video-card .wp-block-post-excerpt__more-link {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding: 0.75rem 1.5rem;
+	border-radius: 9999px;
+	text-decoration: none;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.video-card .wp-block-post-excerpt__more-link:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.1);
+}
+
 /* Article card hover effects */
 .article-card {
 	transition: box-shadow 0.3s ease, transform 0.2s ease;

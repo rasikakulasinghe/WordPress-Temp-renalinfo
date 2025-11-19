@@ -197,6 +197,8 @@ To add new block styles:
 ### Template Editing
 
 Templates in `templates/` and `parts/` are HTML with block markup:
+- **CRITICAL**: WordPress block templates (.html files) should NOT contain PHP code
+- Block templates use HTML comment syntax for dynamic content, not PHP tags
 - Edit via Site Editor (Appearance > Editor) when possible
 - Or directly edit HTML files (use block comment syntax: `<!-- wp:block-name {...} -->`)
 - Changes sync between editor and files
@@ -334,10 +336,11 @@ See `TESTING.md` for comprehensive testing checklist.
 
 1. **Don't add styles to style.css** - Use theme.json instead (block theme best practice)
 2. **Don't create PHP templates** - Use HTML templates with block markup
-3. **Don't use old function names** - All must be `renalinfolk_` prefixed
-4. **Don't skip JSON validation** - Invalid theme.json breaks Site Editor
-5. **Don't modify archived patterns** - Files in `patterns/archive/` and `styles/archive/` are deprecated
-6. **Don't hardcode colors** - Use CSS variables: `var(--wp--preset--color--accent-1)`
+3. **Don't add PHP code to .html templates** - Block templates (.html files) should NEVER contain PHP tags (<?php ?>). Use block comment syntax instead
+4. **Don't use old function names** - All must be `renalinfolk_` prefixed
+5. **Don't skip JSON validation** - Invalid theme.json breaks Site Editor
+6. **Don't modify archived patterns** - Files in `patterns/archive/` and `styles/archive/` are deprecated
+7. **Don't hardcode colors** - Use CSS variables: `var(--wp--preset--color--accent-1)`
 
 ## Common Development Tasks
 

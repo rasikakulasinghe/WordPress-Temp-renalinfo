@@ -13,7 +13,8 @@
       "Bash(openspec validate:*)",
       "WebSearch",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(openspec proposal:*)"
+      "Bash(openspec proposal:*)",
+      "Bash(C:/xampp/php/php.exe -l \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\functions.php\")"
     ],
     "deny": [],
     "ask": []
