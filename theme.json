@@ -803,24 +803,64 @@
 	],
 	"customTemplates": [
 		{
-			"name": "page-no-title",
+			"name": "page-home",
 			"postTypes": ["page"],
-			"title": "Page No Title"
+			"title": "Home"
 		},
 		{
-			"name": "page-contact",
+			"name": "page-gallery-article",
 			"postTypes": ["page"],
-			"title": "Contact Us"
+			"title": "Page Article Gallery"
+		},
+		{
+			"name": "page-gallery-image",
+			"postTypes": ["page"],
+			"title": "Page Gallery Image"
+		},
+		{
+			"name": "page-gallery-publications",
+			"postTypes": ["page"],
+			"title": "Page Gallery Publications"
+		},
+		{
+			"name": "page-gallery-video",
+			"postTypes": ["page"],
+			"title": "Page Gallery Video"
 		},
 		{
 			"name": "page-about",
 			"postTypes": ["page"],
-			"title": "About Us"
+			"title": "Page About"
 		},
 		{
-			"name": "single",
+			"name": "page-contact",
+			"postTypes": ["page"],
+			"title": "Page Contact"
+		},
+		{
+			"name": "page-template",
+			"postTypes": ["page"],
+			"title": "Page Template"
+		},
+		{
+			"name": "post-image-gallery",
 			"postTypes": ["post"],
-			"title": "Single"
+			"title": "Post Image Gallery"
+		},
+		{
+			"name": "post-article",
+			"postTypes": ["post"],
+			"title": "Post Article"
+		},
+		{
+			"name": "post-publication",
+			"postTypes": ["post"],
+			"title": "Post Publication"
+		},
+		{
+			"name": "post-video-gallery",
+			"postTypes": ["post"],
+			"title": "Post Video"
 		}
 	]
 }
