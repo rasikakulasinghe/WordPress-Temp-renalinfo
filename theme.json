@@ -24,6 +24,26 @@
 					"slug": "primary"
 				},
 				{
+					"color": "#2E4F64",
+					"name": "Primary Dark",
+					"slug": "primary-dark"
+				},
+				{
+					"color": "#1a237e",
+					"name": "Primary Dark Blue",
+					"slug": "primary-dark-blue"
+				},
+				{
+					"color": "#004d40",
+					"name": "Primary Dark Green",
+					"slug": "primary-dark-green"
+				},
+				{
+					"color": "#BDE0FE",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
 					"color": "#f5f7f8",
 					"name": "Background Light",
 					"slug": "background-light"
@@ -59,16 +79,6 @@
 					"slug": "accent-text"
 				},
 				{
-					"color": "#2E4F64",
-					"name": "Primary Dark",
-					"slug": "primary-dark"
-				},
-				{
-					"color": "#BDE0FE",
-					"name": "Secondary",
-					"slug": "secondary"
-				},
-				{
 					"color": "#006D77",
 					"name": "Green-Blue",
 					"slug": "green-blue"
@@ -82,36 +92,6 @@
 					"color": "#FFC300",
 					"name": "CTA Yellow",
 					"slug": "cta-yellow"
-				},
-				{
-					"color": "#359EFF",
-					"name": "Accent 1 (Primary Blue)",
-					"slug": "accent-1"
-				},
-				{
-					"color": "#004d40",
-					"name": "Accent 2 (Primary Dark Green)",
-					"slug": "accent-2"
-				},
-				{
-					"color": "#FFC300",
-					"name": "Accent 3 (CTA Yellow)",
-					"slug": "accent-3"
-				},
-				{
-					"color": "#006D77",
-					"name": "Accent 4 (Green-Blue)",
-					"slug": "accent-4"
-				},
-				{
-					"color": "#1C2541",
-					"name": "Accent 5 (Footer Dark)",
-					"slug": "accent-5"
-				},
-				{
-					"color": "#1a237e",
-					"name": "Accent 6 (Primary Dark Blue)",
-					"slug": "accent-6"
 				}
 			]
 		},
@@ -318,7 +298,7 @@
 					"fontWeight": "300"
 				},
 				"color": {
-					"background": "var:preset|color|accent-5",
+					"background": "var:preset|color|footer-dark",
 					"text": "var:preset|color|contrast"
 				},
 				"spacing": {
@@ -332,12 +312,12 @@
 			},
 			"core/comment-author-name": {
 				"color": {
-					"text": "var:preset|color|accent-4"
+					"text": "var:preset|color|green-blue"
 				},
 				"elements": {
 					"link": {
 						"color": {
-							"text": "var:preset|color|accent-4"
+							"text": "var:preset|color|green-blue"
 						},
 						"typography": {
 							"textDecoration": "none"
@@ -410,7 +390,7 @@
 				}
 			},
 			"core/post-comments-form": {
-				"css": "& textarea, input:not([type=submit]){border-radius:.25rem; border-color: var(--wp--preset--color--accent-6);} & input[type=checkbox]{margin:0 .2rem 0 0;} & label {font-size: var(--wp--preset--font-size--small); }",
+				"css": "& textarea, input:not([type=submit]){border-radius:.25rem; border-color: var(--wp--preset--color--primary-dark-blue);} & input[type=checkbox]{margin:0 .2rem 0 0;} & label {font-size: var(--wp--preset--font-size--small); }",
 				"typography": {
 					"fontSize": "var:preset|font-size|medium"
 				},
@@ -449,12 +429,12 @@
 			},
 			"core/post-date": {
 				"color":{
-					"text": "var:preset|color|accent-4"
+					"text": "var:preset|color|green-blue"
 				},
 				"elements": {
 					"link": {
 						"color" : {
-							"text": "var:preset|color|accent-4"
+							"text": "var:preset|color|green-blue"
 						},
 						":hover": {
 							"typography": {
@@ -578,7 +558,7 @@
 				}
 			},
 			"core/search": {
-				"css": "& .wp-block-search__input{border-radius:3.125rem;padding-left:1.5625rem;padding-right:1.5625rem;border-color:var(--wp--preset--color--accent-6);}",
+				"css": "& .wp-block-search__input{border-radius:3.125rem;padding-left:1.5625rem;padding-right:1.5625rem;border-color:var(--wp--preset--color--primary-dark-blue);}",
 				"typography": {
 					"fontSize": "var:preset|font-size|medium",
 					"lineHeight": "1.6"
@@ -608,7 +588,7 @@
 					"width": "0 0 1px 0"
 				},
 				"color": {
-					"text": "var:preset|color|accent-6"
+					"text": "var:preset|color|primary-dark-blue"
 				},
 				"variations": {
 					"wide": {

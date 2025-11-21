@@ -14,7 +14,8 @@
       "WebSearch",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(openspec proposal:*)",
-      "Bash(C:/xampp/php/php.exe -l \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\functions.php\")"
+      "Bash(C:/xampp/php/php.exe -l \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\functions.php\")",
+      "Bash(php -r:*)"
     ],
     "deny": [],
     "ask": []

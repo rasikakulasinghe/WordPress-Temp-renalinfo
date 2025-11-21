@@ -14,53 +14,75 @@ Text Domain: renalinfolk
 Tags: medical, healthcare, pediatric, nephrology, hospital, clinic, accessibility-ready, full-site-editing, block-patterns, one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations
 */
 
+/* ==========================================================================
+   Base Styles - Typography & Accessibility
+   ========================================================================== */
+
 /*
  * Link styles
- * https://github.com/WordPress/gutenberg/issues/42319
+ * Enhanced link decoration for better accessibility
+ * Reference: https://github.com/WordPress/gutenberg/issues/42319
  */
 a {
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.1em;
 }
 
-/* Focus styles */
+/*
+ * Focus styles for accessibility (WCAG AA compliance)
+ * Ensures all interactive elements have visible focus indicators
+ */
 :where(.wp-site-blocks *:focus) {
 	outline-width: 2px;
 	outline-style: solid;
 }
 
-/* Increase the bottom margin on submenus, so that the outline is visible. */
-.wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
-	margin-bottom: 3px;
-}
-
-/* Increase the outline offset on the parent menu items, so that the outline does not touch the text. */
-.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content {
-	outline-offset: 4px;
-}
-
-/* Remove outline offset from the submenus, otherwise the outline is visible outside the submenu container. */
-.wp-block-navigation .wp-block-navigation-item ul.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
-	outline-offset: 0;
-}
-
 /*
  * Progressive enhancement to reduce widows and orphans
- * https://github.com/WordPress/gutenberg/issues/55190
+ * Improves readability by preventing single words on last lines
+ * Reference: https://github.com/WordPress/gutenberg/issues/55190
  */
 h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	text-wrap: pretty;
 }
 
+/* ==========================================================================
+   Navigation Block - Accessibility Enhancements
+   ========================================================================== */
+
+/* Increase bottom margin on submenus for visible focus outlines */
+.wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
+	margin-bottom: 3px;
+}
+
+/* Increase outline offset on parent menu items to prevent text overlap */
+.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content {
+	outline-offset: 4px;
+}
+
+/* Remove outline offset from submenus to keep outline within container */
+.wp-block-navigation .wp-block-navigation-item ul.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	outline-offset: 0;
+}
+
+/* ==========================================================================
+   Core Block Enhancements
+   ========================================================================== */
+
 /*
- * Change the position of the more block on the front, by making it a block level element.
- * https://github.com/WordPress/gutenberg/issues/65934
-*/
+ * More Link Block
+ * Makes read-more links display as block-level elements
+ * Reference: https://github.com/WordPress/gutenberg/issues/65934
+ */
 .more-link {
 	display: block;
 }
 
-/* Resource card hover effects */
+/* ==========================================================================
+   Custom Card Components
+   ========================================================================== */
+
+/* Resource Card - Subtle hover effect for resource listings */
 .resource-card {
 	transition: box-shadow 0.3s ease, transform 0.2s ease;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -71,12 +93,12 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-2px);
 }
 
-/* Post content card styling */
+/* Post Content Card - Base card styling for post content */
 .post-content-card {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* News card hover effects */
+/* News Card - Prominent hover effect for news items */
 .news-card {
 	transition: box-shadow 0.3s ease, transform 0.2s ease;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -87,7 +109,17 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-4px);
 }
 
-/* Video card hover effects */
+/* Article Card - Moderate hover effect for article listings */
+.article-card {
+	transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.article-card:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+	transform: translateY(-2px);
+}
+
+/* Video Card - Enhanced styling for video content */
 .video-card {
 	transition: box-shadow 0.3s ease, transform 0.2s ease;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
@@ -98,7 +130,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	transform: translateY(-4px);
 }
 
-/* Video card button styling - full width read-more as button */
+/* Video card "Read More" button - Full-width pill-shaped button */
 .video-card .wp-block-post-excerpt__more-link {
 	display: block;
 	width: 100%;
@@ -114,30 +146,28 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	filter: brightness(1.1);
 }
 
-/* Article card hover effects */
-.article-card {
-	transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
+/* ==========================================================================
+   Header & Layout Components
+   ========================================================================== */
 
-.article-card:hover {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
-	transform: translateY(-2px);
-}
-
-/* Header gradient - uses CSS custom properties with fallback */
+/* Header Gradient - Medical theme gradient (teal to dark blue) */
 .header-gradient {
 	background: linear-gradient(135deg, var(--wp--preset--color--green-blue) 0%, var(--wp--preset--color--footer-dark) 100%);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Sticky header */
+/* Sticky Header - Fixed navigation for better UX */
 .site-header {
 	position: sticky;
 	top: 0;
 	z-index: 999;
 }
 
-/* Material Icons styling */
+/* ==========================================================================
+   Icon Systems
+   ========================================================================== */
+
+/* Material Icons - Google Material Symbols */
 .material-symbols-outlined {
 	font-family: 'Material Symbols Outlined';
 	font-weight: normal;
@@ -154,7 +184,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	-webkit-font-smoothing: antialiased;
 }
 
-/* Social Links Icon Visibility Fix */
+/* Social Links Block - Visibility and color fixes */
 .wp-block-social-links .wp-social-link svg,
 .wp-block-social-links .wp-social-link {
 	width: 24px;
@@ -169,6 +199,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	color: inherit;
 }
 
+/* Social Links - Transparent backgrounds with primary color */
 .wp-block-social-links .wp-social-link-facebook,
 .wp-block-social-links .wp-social-link-x,
 .wp-block-social-links .wp-social-link-whatsapp,
