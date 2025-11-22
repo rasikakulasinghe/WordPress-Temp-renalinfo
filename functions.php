@@ -403,6 +403,30 @@ if ( ! function_exists( 'renalinfolk_enqueue_video_embed_script' ) ) :
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_video_embed_script' );
 
+// Enqueue article gallery filter script.
+if ( ! function_exists( 'renalinfolk_enqueue_article_filters' ) ) :
+	/**
+	 * Enqueues JavaScript for article gallery filtering and sorting.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_enqueue_article_filters() {
+		// Only enqueue on article gallery pages.
+		if ( is_page_template( 'templates/page-gallery-article.html' ) || is_page_template( 'page-gallery-article' ) ) {
+			wp_enqueue_script(
+				'renalinfolk-article-filters',
+				get_template_directory_uri() . '/assets/js/article-gallery-filters.js',
+				array(),
+				wp_get_theme()->get( 'Version' ),
+				true
+			);
+		}
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_article_filters' );
+
 // Enqueue video meta editor script in the block editor.
 if ( ! function_exists( 'renalinfolk_enqueue_video_meta_editor' ) ) :
 	/**
@@ -480,6 +504,71 @@ if ( ! function_exists( 'renalinfolk_render_video_embed' ) ) :
 	}
 endif;
 add_filter( 'render_block', 'renalinfolk_render_video_embed', 10, 2 );
+
+// Add data attributes to article cards for filtering.
+if ( ! function_exists( 'renalinfolk_add_article_card_data' ) ) :
+	/**
+	 * Adds data attributes to article cards for JavaScript filtering.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param string $block_content The block content.
+	 * @param array  $block The block data.
+	 * @return string Modified block content.
+	 */
+	function renalinfolk_add_article_card_data( $block_content, $block ) {
+		// Only process group blocks with article-card class.
+		if ( 'core/group' !== $block['blockName'] ) {
+			return $block_content;
+		}
+
+		if ( ! isset( $block['attrs']['className'] ) || false === strpos( $block['attrs']['className'], 'article-card' ) ) {
+			return $block_content;
+		}
+
+		// Get post data within the query loop.
+		global $post;
+		if ( ! $post ) {
+			return $block_content;
+		}
+
+		// Get post date.
+		$post_date     = get_the_date( 'c', $post );
+		$post_modified = get_the_modified_date( 'c', $post );
+
+		// Get categories as comma-separated slugs.
+		$categories      = get_the_category( $post->ID );
+		$category_slugs  = array();
+		if ( ! empty( $categories ) ) {
+			foreach ( $categories as $category ) {
+				$category_slugs[] = $category->slug;
+			}
+		}
+		$categories_string = implode( ',', $category_slugs );
+
+		// Add data attributes to the article-card div.
+		$block_content = str_replace(
+			'data-date=""',
+			'data-date="' . esc_attr( $post_date ) . '"',
+			$block_content
+		);
+
+		$block_content = str_replace(
+			'data-modified=""',
+			'data-modified="' . esc_attr( $post_modified ) . '"',
+			$block_content
+		);
+
+		$block_content = str_replace(
+			'data-categories=""',
+			'data-categories="' . esc_attr( $categories_string ) . '"',
+			$block_content
+		);
+
+		return $block_content;
+	}
+endif;
+add_filter( 'render_block', 'renalinfolk_add_article_card_data', 10, 2 );
 
 // Create manual video embed.
 if ( ! function_exists( 'renalinfolk_create_manual_embed' ) ) :

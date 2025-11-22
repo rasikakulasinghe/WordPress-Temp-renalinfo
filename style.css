@@ -211,3 +211,179 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	background-color: transparent !important;
 	color: var(--wp--preset--color--primary) !important;
 }
+
+/* ==========================================================================
+   Article Gallery Filters - Interactive Components
+   ========================================================================== */
+
+/* Filter Category Buttons */
+.filter-category-btn .wp-block-button__link {
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.filter-category-btn .wp-block-button__link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.filter-category-btn.is-active .wp-block-button__link {
+	background-color: var(--wp--preset--color--green-blue) !important;
+	color: var(--wp--preset--color--base) !important;
+	border-color: var(--wp--preset--color--green-blue) !important;
+	box-shadow: 0 2px 6px rgba(0, 109, 119, 0.3);
+}
+
+/* Sort Dropdown */
+.sort-dropdown {
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	min-width: 200px;
+}
+
+.sort-dropdown:hover {
+	border-color: var(--wp--preset--color--primary) !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown.is-open .sort-dropdown-menu {
+	display: block;
+	animation: slideDown 0.2s ease;
+}
+
+.sort-dropdown.is-open .sort-dropdown-toggle span:last-child {
+	transform: rotate(180deg);
+	display: inline-block;
+}
+
+.sort-dropdown-toggle {
+	user-select: none;
+}
+
+.sort-dropdown-menu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	margin-top: 0.5rem;
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--background-light);
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	min-width: 200px;
+	z-index: 100;
+	display: none;
+	overflow: hidden;
+}
+
+.sort-option {
+	display: block;
+	width: 100%;
+	text-align: left;
+	padding: 0.75rem 1rem;
+	border: none;
+	background: none;
+	font-size: 0.875rem;
+	cursor: pointer;
+	color: var(--wp--preset--color--contrast);
+	transition: background-color 0.2s ease;
+}
+
+.sort-option:hover {
+	background-color: var(--wp--preset--color--background-light);
+}
+
+.sort-option.is-active {
+	background-color: var(--wp--preset--color--background-light);
+	color: var(--wp--preset--color--primary);
+	font-weight: 600;
+}
+
+/* Clear Filters Button */
+.clear-filters-btn .wp-block-button__link {
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.clear-filters-btn .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--primary) !important;
+	color: var(--wp--preset--color--base) !important;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(53, 158, 255, 0.3);
+}
+
+/* Filter Toggle (Mobile) */
+.filter-toggle-label:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transform: translateY(-2px);
+}
+
+.article-filter-toggle:checked ~ .filter-content {
+	display: flex !important;
+}
+
+.article-filter-toggle:checked + .filter-toggle-label .filter-arrow {
+	transform: rotate(180deg);
+}
+
+/* Article Search Input */
+.article-search-input input[type="search"] {
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-search-input input[type="search"]:focus {
+	border-color: var(--wp--preset--color--primary) !important;
+	box-shadow: 0 0 0 2px rgba(53, 158, 255, 0.1);
+	outline: none;
+}
+
+/* Article Card Enhancements */
+.article-card-image img {
+	transition: transform 0.4s ease;
+}
+
+.article-card:hover .article-card-image img {
+	transform: scale(1.05);
+}
+
+/* Responsive Filters */
+@media (max-width: 767px) {
+	.filter-toggle-label {
+		display: flex !important;
+	}
+
+	.filter-content {
+		display: none;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.article-filter-toggle:checked ~ .filter-section-container .filter-content {
+		display: flex !important;
+	}
+
+	.sort-dropdown {
+		width: 100%;
+	}
+
+	.wp-block-group.filter-content > .wp-block-group,
+	.wp-block-group.filter-content > .wp-block-buttons {
+		width: 100%;
+	}
+
+	.wp-block-buttons {
+		flex-wrap: wrap;
+	}
+}
+
+/* Animation */
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
