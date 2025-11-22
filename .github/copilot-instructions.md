@@ -46,42 +46,45 @@ This is a **block theme** (not a classic theme), which means:
 
 ### Core Files
 
-**theme.json** (16KB, ~785 lines)
+**theme.json** (~847 lines)
 - Central configuration for colors, typography, spacing, and block styles
-- Must validate against WordPress 6.7 schema
-- Contains medical design system: 21-color palette (blues/greens/yellows), Lexend typography, fluid spacing
+- Must validate against WordPress 6.7 schema version 3
+- Contains medical design system: 17-color palette (blues/greens/yellows), Lexend typography, fluid spacing
 - Block-specific styles for navigation, buttons, search, post templates, etc.
 - Validation command: `node -e "JSON.parse(require('fs').readFileSync('theme.json', 'utf8'))"`
 
-**functions.php** (167 lines)
-- Minimal PHP - block themes need very little server-side code
-- Registers custom block styles (`checkmark-list`, `cta-highlight`)
-- Registers pattern categories (`renalinfolk_medical_pages`, `renalinfolk_medical_content`)
-- Registers block binding source (`renalinfolk/format` for post format names)
-- Enqueues `style.css` and `assets/css/editor-style.css`
+**functions.php** (520 lines)
+- Minimal PHP for block theme support:
+  - Line 119: Custom block styles (`checkmark-list`, `cta-highlight`)
+  - Line 156: Pattern categories (`renalinfolk_medical_pages`, `renalinfolk_medical_content`, `renalinfolk_post-format`)
+  - Line 194: Block binding source (`renalinfolk/format` for post format names)
+  - Line 285: Video meta fields (`renalinfolk_video_url`, `renalinfolk_video_duration`)
+  - Line 332: Gallery query filtering (category/tag parameters)
+  - Line 444: Video embed rendering (YouTube, Vimeo, iframe fallbacks)
 - All functions use `renalinfolk_` prefix
 
-**style.css** (62 lines)
+**style.css** (214 lines)
 - Contains theme header metadata (name, version, description, tags)
-- Only includes supplementary styles (focus states, link decoration, text-wrap)
+- Supplementary styles: card components (resource-card, news-card, article-card, video-card)
+- Focus states, hover effects, gradient header styles
 - Primary styling comes from `theme.json`, not this file
 
 ### Directory Structure
 
 ```
-/templates/          - Page templates (HTML): index, single, archive, 404, page, search
-/parts/              - Template parts (HTML): header, footer variations, sidebar
-/patterns/           - Block patterns (PHP): 98 reusable content layouts
-/patterns/archive/   - Archived/unused patterns (do not modify)
-/styles/             - Style variations (JSON): dark mode, evening mode
+/templates/          - 18 HTML templates (NO PHP CODE - use block syntax)
+/parts/              - Template parts (HTML): header.html, footer.html
+/patterns/           - 52 PHP block patterns
+/styles/             - Style variations (JSON): 01-evening.json, 02-dark.json
 /assets/fonts/       - Font files: Lexend (variable 400-900), Fira Code (variable 300-700)
 /assets/css/         - Supplementary CSS (editor-style.css)
+/assets/js/          - video-embed.js, video-meta-editor.js
 /openspec/           - Project spec and change management
 ```
 
 ## Medical Design System
 
-**Color Palette** (21 colors total, medical-focused):
+**Color Palette** (17 colors total, medical-focused):
 
 *Primary Colors:*
 - `base`: #FFFFFF (white backgrounds)
@@ -122,7 +125,7 @@ This is a **block theme** (not a classic theme), which means:
 **Spacing Scale:**
 - Uses fluid spacing with clamp() for responsive design
 - 7 sizes: Tiny (10px) → XX-Large (clamp(70px, 10vw, 140px))
-- Content width: 645px, Wide width: 1340px
+- Content width: 900px, Wide width: 1200px
 
 **Key Design Features:**
 - Rounded buttons: border-radius 9999px (fully rounded pills)
@@ -178,8 +181,8 @@ Patterns in `patterns/*.php` follow this structure:
 
 **Important:**
 - Slug MUST start with `renalinfolk/`
-- Use registered categories: `renalinfolk_medical_pages`, `renalinfolk_medical_content`
-- 79 existing patterns - avoid duplicates
+- Use registered categories: `renalinfolk_medical_pages`, `renalinfolk_medical_content`, `renalinfolk_post-format`
+- 52 existing patterns - avoid duplicates
 - Block markup uses serialized block grammar (<!-- wp:block-name {...attrs} -->)
 - Reference: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
 - Test in Site Editor (Appearance > Editor > Patterns) before committing
@@ -205,29 +208,27 @@ Templates in `templates/` and `parts/` are HTML with block markup:
 
 **Available Templates:**
 - `index.html` - Main fallback template
-- `home.html` - Front page (blog listing)
-- `archive.html` - Category/tag/date archives
-- `single.html` - Single post view
-- `page.html` - Default page template
 - `page-about.html` - Custom template for About pages
 - `page-contact.html` - Custom template for Contact pages
-- `page-no-title.html` - Page template without title
-- `page-article-gallery.html` - Article gallery listing
-- `gallery-image.html` - Image gallery listing page (3-column responsive grid)
-- `view-image-gallery.html` - Individual gallery viewer with lightbox-style navigation
-- `gallery-video.html` - Video gallery template
-- `view-video-gallery.html` - Video viewer template
+- `page-gallery-article.html` - Article gallery listing
+- `page-gallery-image.html` - Image gallery listing page
+- `page-gallery-publications.html` - Publications gallery
+- `page-gallery-video.html` - Video gallery template
+- `page-home.html` - Home page template
+- `page-our-team.html` - Team page template
+- `page-privacy.html` - Privacy policy page
+- `page-template.html` - Default page template
+- `page-terms.html` - Terms of service page
+- `post-article.html` - Article post template
+- `post-image-gallery.html` - Image gallery post template
+- `post-publication.html` - Publication post template
+- `post-video-gallery.html` - Video gallery post template
 - `404.html` - Error page
 - `search.html` - Search results
 
 **Template Parts:**
 - `header.html` - Gradient navigation header
-- `vertical-header.html` - Alternative vertical layout
-- `header-large-title.html` - Article layout header
 - `footer.html` - Dark footer (default)
-- `footer-columns.html` - Multi-column footer
-- `footer-newsletter.html` - Footer with newsletter signup
-- `sidebar.html` - Resources sidebar
 
 ## Block Editor Development
 
@@ -258,6 +259,20 @@ Style variations in `styles/*.json`:
 - Override specific settings/styles from main theme.json
 - Available variations: `01-evening.json`, `02-dark.json`
 - Reference: https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/#combining-theme-json-in-block-themes
+
+## Video Gallery System
+
+Custom implementation for video posts:
+
+**Meta Fields:**
+- `renalinfolk_video_url` - Video URL (YouTube, Vimeo)
+- `renalinfolk_video_duration` - Duration string (e.g., "5:30")
+
+**Implementation:**
+- Registration: functions.php:285
+- Editor UI: assets/js/video-meta-editor.js (enqueued at 415)
+- Embed rendering: functions.php:444 (YouTube/Vimeo auto-detect)
+- Query filtering: functions.php:332 (supports `?tag=event&orderby=date`)
 
 ## Testing & Validation
 
@@ -347,15 +362,15 @@ Test these features across browsers:
 
 ### Validation Commands
 
-```bash
+```powershell
 # Validate theme.json syntax
 node -e "JSON.parse(require('fs').readFileSync('theme.json', 'utf8'))"
 
-# Validate PHP syntax (if PHP CLI available)
-php -l functions.php
+# Validate PHP syntax (Windows XAMPP)
+C:/xampp/php/php.exe -l functions.php
 
-# Validate all PHP pattern files
-for file in patterns/*.php; do php -l "$file"; done
+# Validate all PHP pattern files (PowerShell)
+Get-ChildItem patterns/*.php | ForEach-Object { C:/xampp/php/php.exe -l $_.FullName }
 
 # Validate style variations
 node -e "JSON.parse(require('fs').readFileSync('styles/01-evening.json', 'utf8'))"

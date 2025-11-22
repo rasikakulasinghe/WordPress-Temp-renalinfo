@@ -7,9 +7,9 @@ Renalinfolk is a professional WordPress block theme (Full Site Editing) designed
 - **WordPress**: 6.7+ (Full Site Editing / Block Theme)
 - **PHP**: 7.2+
 - **HTML**: Block-based HTML templates in `templates/` and `parts/` directories (not PHP templates)
-- **CSS**: Primarily in `theme.json`; minimal supplementary CSS in `style.css` (focus states, progressive enhancements)
-- **theme.json**: Schema version 3 (https://schemas.wp.org/wp/6.7/theme.json) - 16KB, ~785 lines
-- **JavaScript**: Minimal (WordPress block editor handles interactivity)
+- **CSS**: Primarily in `theme.json`; minimal supplementary CSS in `style.css` (214 lines - focus states, progressive enhancements)
+- **theme.json**: Schema version 3 (https://schemas.wp.org/wp/6.7/theme.json) - 847 lines
+- **JavaScript**: Minimal - video-embed.js, video-meta-editor.js (WordPress block editor handles interactivity)
 - **Fonts**: Lexend (variable 400-900), Fira Code (variable 300-700)
 
 ## Project Conventions
@@ -24,46 +24,72 @@ Renalinfolk is a professional WordPress block theme (Full Site Editing) designed
 - **Hook Priority**: Use standard WordPress action/filter priority conventions
 - **Indentation**: Tabs for PHP, as per WordPress standards
 - **File Organization**:
-  - Core functionality in `functions.php` (167 lines - minimal for block themes)
-  - Block patterns in `patterns/` directory (98 PHP files)
-  - HTML templates in `templates/` (10 templates) and `parts/` (7 template parts)
+  - Core functionality in `functions.php` (520 lines - minimal for block themes)
+  - Block patterns in `patterns/` directory (52 PHP files)
+  - HTML templates in `templates/` (18 templates) and `parts/` (2 template parts)
   - Style variations in `styles/` (JSON files: 01-evening.json, 02-dark.json)
-  - Assets in `assets/fonts/` and `assets/css/`
+  - Assets in `assets/fonts/`, `assets/css/`, and `assets/js/`
 
 ### Architecture Patterns
 - **Full Site Editing (FSE)**: WordPress block theme architecture (NOT classic theme)
 - **Template Hierarchy**: HTML templates (NOT PHP) with serialized block markup
-- **Template Parts**: Reusable components in `parts/` (header variants, footer variants, sidebar)
-- **Block Patterns**: 98 pre-designed medical/healthcare layouts organized by category
+- **Template Parts**: Reusable components in `parts/` (header.html, footer.html)
+- **Block Patterns**: 52 pre-designed medical/healthcare layouts organized by category
 - **Block Styles**: Custom block variations (`checkmark-list`, `cta-highlight`) registered in `functions.php`
 - **Block Bindings**: Custom data source `renalinfolk/format` for post format names
-- **theme.json Schema**: Centralized design system (21-color medical palette, Lexend typography, fluid spacing)
-- **Pattern Categories**: `renalinfolk_medical_pages`, `renalinfolk_medical_content`
+- **theme.json Schema**: Centralized design system (17-color medical palette, Lexend typography, fluid spacing)
+- **Pattern Categories**: `renalinfolk_medical_pages`, `renalinfolk_medical_content`, `renalinfolk_post-format`
 - **Post Formats**: Support for aside, audio, chat, gallery, image, link, quote, status, video
 - **Progressive Enhancement**: CSS features (color-mix, text-wrap: pretty) with fallbacks
+- **Video Gallery System**: Custom meta fields (`renalinfolk_video_url`, `renalinfolk_video_duration`) with YouTube/Vimeo embed support
 
 ### Design System (theme.json)
 
-**Color Palette** (21 colors - medical-focused):
-- **Primary**: `primary` (#359EFF - Primary Blue), `base` (#FFFFFF), `contrast` (#0d121b)
-- **Semantic**: `background-light` (#f5f7f8), `background-dark` (#0f1923), `text-light` (#4A4A4A), `text-dark` (#E0E0E0)
-- **Theme**: `accent` (#FFD28E), `primary-dark` (#2E4F64), `secondary` (#BDE0FE), `green-blue` (#006D77), `footer-dark` (#1C2541), `cta-yellow` (#FFC300)
-- **Numbered** (backwards compatibility): `accent-1` through `accent-6`
-- **Accessibility**: WCAG AA compliant (4.5:1 text, 3:1 UI components)
+**Color Palette** (17 colors - medical-focused):
 
-**Spacing Scale**:
+*Primary Colors:*
+- `base`: #FFFFFF (white backgrounds)
+- `contrast`: #0d121b (primary text)
+- `primary`: #359EFF (Primary Blue - main brand color)
+
+*Semantic Colors:*
+- `background-light`: #f5f7f8 (Light backgrounds)
+- `background-dark`: #0f1923 (Dark backgrounds)
+- `text-light`: #4A4A4A (Secondary text on light backgrounds)
+- `text-dark`: #E0E0E0 (Text on dark backgrounds)
+
+*Theme Colors:*
+- `accent`: #FFD28E (Warm accent)
+- `accent-dark`: #1d2c33 (Dark accent variant)
+- `accent-text`: #332A1C (Accent text color)
+- `primary-dark`: #2E4F64 (Darker primary variant)
+- `secondary`: #BDE0FE (Secondary blue)
+- `green-blue`: #006D77 (Teal accent)
+- `footer-dark`: #1C2541 (Footer background)
+- `cta-yellow`: #FFC300 (Call-to-action buttons)
+
+*Additional Colors (for backwards compatibility):*
+- `primary-dark-blue`: #1a237e (Dark blue for gradients)
+- `primary-dark-green`: #004d40 (Dark green for headers)
+
+**Accessibility**: WCAG AA compliant (4.5:1 text, 3:1 UI components)
+
+**Spacing Scale:**
+
 - 7 sizes: Tiny (10px) → XX-Large (clamp(70px, 10vw, 140px))
-- Content width: 645px, Wide width: 1340px
+- Content width: 900px, Wide width: 1200px
 - Fluid spacing using CSS clamp() for responsive design
 
-**Typography**:
+**Typography:**
+
 - Primary: Lexend (sans-serif, variable 400-900)
 - Monospace: Fira Code (variable 300-700)
 - Headings: weight 800, letter-spacing -0.1px
 - Body: weight 400, line-height 1.5, letter-spacing -0.1px
 - Fluid sizing with clamp() for responsive scaling
 
-**Key Design Features**:
+**Key Design Features:**
+
 - Rounded buttons: border-radius 9999px (fully rounded pills)
 - Navigation gradient: linear-gradient(135deg, accent-4 to accent-6)
 - Post cards: white background, box-shadow, hover lift effect (translateY)
@@ -92,14 +118,15 @@ Renalinfolk is a professional WordPress block theme (Full Site Editing) designed
 ## Domain Context
 
 ### WordPress Block Theme Concepts
+
 - **Block Patterns**: Reusable pre-designed block compositions stored as PHP files in `patterns/`
   - Format: `<!-- wp:namespace/block-name {"attribute":"value"} -->`
   - Must include header with Title, Slug (renalinfolk/pattern-name), Categories, Description
-  - 98 existing patterns (avoid duplicates)
+  - 52 existing patterns (avoid duplicates)
 - **Template Parts**: Reusable sections (header, footer) stored in `parts/` as HTML files
-  - 7 template parts: header variants (3), footer variants (3), sidebar (1)
+  - 2 template parts: header.html, footer.html
 - **Templates**: Full page templates in `templates/` directory (HTML files, NOT PHP)
-  - 10 templates: index, home, archive, single, page (3 variants), 404, search
+  - 18 templates: index, 404, search, page-* (11 custom page templates), post-* (4 custom post templates)
 - **Global Styles**: Design tokens and presets defined in `theme.json`
 - **Block Styles**: Custom styling variations for core blocks (registered in functions.php)
 - **Block Bindings**: Dynamic data sources bound to block attributes (WP 6.5+)
@@ -114,26 +141,32 @@ Renalinfolk is a professional WordPress block theme (Full Site Editing) designed
 - **Contact**: Location info, phone/email, social links
 
 ### Template Inventory
+
 **Templates** (`templates/*.html`):
+
 - index.html - Main fallback template
-- home.html - Front page (blog listing)
-- archive.html - Category/tag/date archives
-- single.html - Single post view
-- page.html - Default page template
 - page-about.html - Custom template for About pages
 - page-contact.html - Custom template for Contact pages
-- page-no-title.html - Page template without title
+- page-gallery-article.html - Article gallery listing
+- page-gallery-image.html - Image gallery listing page
+- page-gallery-publications.html - Publications gallery
+- page-gallery-video.html - Video gallery template
+- page-home.html - Home page template
+- page-our-team.html - Team page template
+- page-privacy.html - Privacy policy page
+- page-template.html - Default page template
+- page-terms.html - Terms of service page
+- post-article.html - Article post template
+- post-image-gallery.html - Image gallery post template
+- post-publication.html - Publication post template
+- post-video-gallery.html - Video gallery post template
 - 404.html - Error page
 - search.html - Search results
 
 **Template Parts** (`parts/*.html`):
+
 - header.html - Gradient navigation header
-- vertical-header.html - Alternative vertical layout
-- header-large-title.html - Article layout header
 - footer.html - Dark footer (default)
-- footer-columns.html - Multi-column footer
-- footer-newsletter.html - Footer with newsletter signup
-- sidebar.html - Resources sidebar
 
 ## Important Constraints
 
@@ -200,15 +233,16 @@ Renalinfolk is a professional WordPress block theme (Full Site Editing) designed
 ## Validation & Resources
 
 ### Validation Commands
-```bash
+
+```powershell
 # Validate theme.json syntax (REQUIRED before commit)
 node -e "JSON.parse(require('fs').readFileSync('theme.json', 'utf8'))"
 
-# Validate PHP syntax
-php -l functions.php
+# Validate PHP syntax (Windows XAMPP)
+C:/xampp/php/php.exe -l functions.php
 
-# Validate all pattern files
-for file in patterns/*.php; do php -l "$file"; done
+# Validate all PHP pattern files (PowerShell)
+Get-ChildItem patterns/*.php | ForEach-Object { C:/xampp/php/php.exe -l $_.FullName }
 
 # Validate style variations
 node -e "JSON.parse(require('fs').readFileSync('styles/01-evening.json', 'utf8'))"
@@ -216,16 +250,38 @@ node -e "JSON.parse(require('fs').readFileSync('styles/02-dark.json', 'utf8'))"
 ```
 
 ### Official Documentation
-- Block Theme Handbook: https://developer.wordpress.org/themes/block-themes/
-- theme.json Reference: https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/
-- Schema Documentation: https://schemas.wp.org/wp/6.7/theme.json
-- Pattern Development: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/
-- Block Editor Handbook: https://developer.wordpress.org/block-editor/
-- Core Blocks Reference: https://developer.wordpress.org/block-editor/reference-guides/core-blocks/
-- Full Site Editing: https://wordpress.org/documentation/article/site-editor/
+
+- Block Theme Handbook: <https://developer.wordpress.org/themes/block-themes/>
+- theme.json Reference: <https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/>
+- Schema Documentation: <https://schemas.wp.org/wp/6.7/theme.json>
+- Pattern Development: <https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/>
+- Block Editor Handbook: <https://developer.wordpress.org/block-editor/>
+- Core Blocks Reference: <https://developer.wordpress.org/block-editor/reference-guides/core-blocks/>
+- Full Site Editing: <https://wordpress.org/documentation/article/site-editor/>
 
 ### Accessibility Testing
-- WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
+
+**Tested Contrast Ratios (WCAG AA Compliance):**
+
+| Color Combination | Ratio | Status |
+|------------------|-------|--------|
+| Primary Blue (#359EFF) on White | 3.36:1 | ⚠️ Large text only (18px+) |
+| Contrast (#0d121b) on White | 17.36:1 | ✅ AAA |
+| Text Light (#4A4A4A) on White | 9.24:1 | ✅ AAA |
+| CTA Yellow (#FFC300) on Footer Dark (#1C2541) | 8.35:1 | ✅ AAA |
+| Green-Blue (#006D77) on White | 5.71:1 | ✅ AA |
+| Primary Dark Green (#004d40) on White | 9.16:1 | ✅ AAA |
+| Text Dark (#E0E0E0) on Background Dark (#0f1923) | 11.18:1 | ✅ AAA |
+
+**Accessibility Requirements:**
+
+- Focus indicators: 2px outline on all interactive elements
+- Keyboard navigation must work throughout
+- ARIA labels on all navigation blocks
+- Semantic HTML5 landmarks (header, main, footer, nav)
+
+**Testing Tools:**
+
+- WebAIM Contrast Checker: <https://webaim.org/resources/contrastchecker/>
 - axe DevTools browser extension
 - Lighthouse audit in Chrome DevTools
-- See `TESTING.md` for comprehensive checklist

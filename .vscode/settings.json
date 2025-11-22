@@ -2,5 +2,6 @@
     "markdownlint.run": "onType",
     "markdownlint.config": {
 
-    }
+    },
+    "php.validate.executablePath": ""
 }
