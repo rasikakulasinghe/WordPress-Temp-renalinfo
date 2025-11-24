@@ -213,6 +213,50 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 }
 
 /* ==========================================================================
+   Gallery Card Image Cover - Full Image Fill
+   ========================================================================== */
+
+/*
+ * Remove padding from post wrapper in gallery templates
+ * The padding from theme.json prevents images from filling cards
+ * Override the :root selector with higher specificity
+ */
+.wp-block-query .wp-block-post-template .wp-block-post {
+	padding: 0 !important;
+	padding-top: 0 !important;
+	padding-right: 0 !important;
+	padding-bottom: 0 !important;
+	padding-left: 0 !important;
+}
+
+/*
+ * Remove default WordPress padding from cover block
+ * This allows the featured image to fill the entire card
+ * Applied specifically to gallery page post templates
+ */
+.wp-block-query .wp-block-post-template .wp-block-cover {
+	padding: 0 !important;
+}
+
+.wp-block-query .wp-block-post-template .wp-block-cover__inner-container {
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Remove default constrained layout padding */
+.wp-block-query .wp-block-post-template .wp-block-cover__inner-container > * {
+	max-width: 100% !important;
+}
+
+/* Add minimal padding only to the content group inside the cover */
+.wp-block-query .wp-block-post-template .wp-block-cover__inner-container .wp-block-group {
+	padding: 0.75rem 1rem !important;
+	margin: 0 !important;
+}
+
+/* ==========================================================================
    Article Gallery Filters - Interactive Components
    ========================================================================== */
 
@@ -385,5 +429,94 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   Responsive Header & Footer - Mobile & Tablet
+   ========================================================================== */
+
+/* Mobile Devices (up to 782px - WordPress mobile breakpoint) */
+@media (max-width: 782px) {
+	/* Header - Hide logo and search on mobile */
+	.header-logo-group .header-logo {
+		display: none !important;
+	}
+
+	.header-search {
+		display: none !important;
+	}
+
+	/* Navigation will automatically show hamburger menu with overlayMenu="mobile" */
+	.main-navigation {
+		width: 100%;
+		justify-content: center !important;
+	}
+
+	/* Footer - Hide main content columns on mobile */
+	.footer-main-content {
+		display: none !important;
+	}
+
+	/* Footer - Keep only copyright section visible */
+	.footer-copyright-section {
+		display: block !important;
+	}
+
+	/* Center copyright content on mobile */
+	.footer-copyright-section .wp-block-group {
+		flex-direction: column !important;
+		align-items: center !important;
+		text-align: center !important;
+		gap: 0.5rem !important;
+	}
+
+	.footer-copyright-section .wp-block-group > .wp-block-group {
+		justify-content: center !important;
+	}
+}
+
+/* Tablet Devices (783px to 1024px) */
+@media (min-width: 783px) and (max-width: 1024px) {
+	/* Header - Show all elements on tablet */
+	.header-logo-group,
+	.header-search {
+		display: flex !important;
+	}
+
+	/* Adjust header spacing for tablet */
+	.header-nav-group {
+		gap: 1rem !important;
+	}
+
+	/* Footer - Show all content on tablet */
+	.footer-main-content {
+		display: block !important;
+	}
+
+	/* Adjust footer columns for better tablet layout */
+	.footer-main-content .wp-block-columns {
+		flex-wrap: wrap;
+	}
+
+	.footer-main-content .wp-block-column {
+		flex-basis: calc(50% - 1rem) !important;
+		min-width: 200px;
+	}
+}
+
+/* Desktop (1025px and up) - Default styles apply */
+@media (min-width: 1025px) {
+	/* Ensure all header elements are visible */
+	.header-logo-group,
+	.header-search,
+	.main-navigation {
+		display: flex !important;
+	}
+
+	/* Ensure all footer content is visible */
+	.footer-main-content,
+	.footer-copyright-section {
+		display: block !important;
 	}
 }
