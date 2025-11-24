@@ -17,7 +17,8 @@
       "Bash(C:/xampp/php/php.exe -l \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\functions.php\")",
       "Bash(php -r:*)",
       "Bash(git rm:*)",
-      "Bash(C:/xampp/php/php.exe -l functions.php)"
+      "Bash(C:/xampp/php/php.exe -l functions.php)",
+      "Bash(openspec --help:*)"
     ],
     "deny": [],
     "ask": []
