@@ -255,43 +255,34 @@ Custom implementation for video posts:
 
 **Location:** `blocks/query-filter-container/`
 
-A custom dynamic block that adds collapsible filter toolbar for Query Loop blocks.
+A custom dynamic block that adds collapsible filter toolbar for Query Loop blocks with simplified filtering options.
 
 **Features:**
-- Search by keyword
 - Sort by date or title (A-Z)
 - Filter by date range
-- Filter by taxonomy (category or tag)
-- Filter by author
+- Filter by tags (multi-select)
 - Fully responsive (mobile-first design)
 - Accessible (WCAG AA compliant)
 - Vanilla JavaScript for instant UI toggle (no page reload)
 
 **Block Attributes:**
-- `showSearch` (boolean, default: true) - Enable search input
 - `showSortOrder` (boolean, default: true) - Enable sort dropdown
 - `showDate` (boolean, default: false) - Enable date range inputs
-- `showTaxonomy` (boolean, default: true) - Enable taxonomy filter
-- `targetTaxonomy` (string, default: "category") - Which taxonomy to display
-- `showAuthor` (boolean, default: false) - Enable author dropdown
+- `showTaxonomy` (boolean, default: true) - Enable tag filter (always displays tags with multi-select)
 - `toggleLabel` (string, default: "Filter & Sort") - Custom button label
 
 **URL Parameters:**
 The block filters posts via URL parameters that WordPress Query Loop automatically respects:
-- `?s=keyword` - Search posts
 - `?sort=date-desc|date-asc|title-asc|title-desc` - Sort order
 - `?date_after=YYYY-MM-DD&date_before=YYYY-MM-DD` - Date range
-- `?category=slug1,slug2` - Filter by category slugs (comma-separated)
-- `?tag=slug1,slug2` - Filter by tag slugs (comma-separated)
-- `?author=5` - Filter by author ID
+- `?tag=slug1,slug2` - Filter by tag slugs (comma-separated for multiple tags)
 
 **Usage in Templates:**
 ```html
 <!-- wp:renalinfolk/query-filter-container {
-  "showSearch": true,
-  "showTaxonomy": true,
-  "targetTaxonomy": "category",
   "showSortOrder": true,
+  "showDate": false,
+  "showTaxonomy": true,
   "toggleLabel": "Filter & Sort"
 } /-->
 
@@ -302,9 +293,8 @@ The block filters posts via URL parameters that WordPress Query Loop automatical
 
 **Admin Configuration:**
 1. Insert block in Site Editor (Appearance > Editor)
-2. Use InspectorControls sidebar to show/hide filters
-3. Configure taxonomy type (category vs tag)
-4. Customize toggle button label
+2. Use InspectorControls sidebar to enable/disable filters (sort order, date range, tags)
+3. Customize toggle button label
 
 **Build Process:**
 ```bash

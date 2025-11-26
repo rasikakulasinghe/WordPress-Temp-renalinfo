@@ -1,31 +1,40 @@
 /**
- * WordPress Interactivity API for Query Filter Container
+ * Query Filter Container - Frontend JavaScript
+ *
+ * Handles form cleanup before submission
  */
 
-// Use simple vanilla JavaScript for toggle functionality
-// since Interactivity API may not be available in all WordPress versions
 document.addEventListener('DOMContentLoaded', function() {
-	const toggleButtons = document.querySelectorAll('.query-filter-toggle');
+	// Get all filter forms
+	const forms = document.querySelectorAll('.query-filter-form');
 
-	toggleButtons.forEach(function(button) {
-		button.addEventListener('click', function() {
-			const drawerId = this.getAttribute('aria-controls');
-			const drawer = document.getElementById(drawerId);
+	forms.forEach(function(form) {
+		// Clean up empty form fields before submit
+		form.addEventListener('submit', function() {
+			// Remove empty text inputs and date inputs
+			const inputs = form.querySelectorAll('input[type="text"], input[type="date"], input[type="search"]');
+			inputs.forEach(function(input) {
+				if (!input.value || input.value.trim() === '') {
+					input.removeAttribute('name');
+				}
+			});
 
-			if (!drawer) return;
+			// Remove empty single selects
+			const selects = form.querySelectorAll('select:not([multiple])');
+			selects.forEach(function(select) {
+				if (!select.value || select.value === '') {
+					select.removeAttribute('name');
+				}
+			});
 
-			const isExpanded = this.getAttribute('aria-expanded') === 'true';
-			const newState = !isExpanded;
-
-			// Update button state
-			this.setAttribute('aria-expanded', newState);
-
-			// Toggle drawer visibility
-			if (newState) {
-				drawer.removeAttribute('hidden');
-			} else {
-				drawer.setAttribute('hidden', '');
-			}
+			// Remove multi-select if nothing is selected
+			const multiSelects = form.querySelectorAll('select[multiple]');
+			multiSelects.forEach(function(select) {
+				const selectedOptions = Array.from(select.selectedOptions);
+				if (selectedOptions.length === 0) {
+					select.removeAttribute('name');
+				}
+			});
 		});
 	});
 });

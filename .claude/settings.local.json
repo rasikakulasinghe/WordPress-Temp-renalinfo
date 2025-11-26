@@ -27,7 +27,11 @@
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
       "Bash(C:/xampp/php/php.exe -l blocks/query-filter-container/render.php)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(if [ -d \"node_modules\" ])",
+      "Bash(then echo \"Dependencies installed\")",
+      "Bash(else echo \"Dependencies not installed\")",
+      "Bash(fi)"
     ],
     "deny": [],
     "ask": []

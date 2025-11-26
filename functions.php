@@ -435,25 +435,7 @@ if ( ! function_exists( 'renalinfolk_enqueue_gallery_filters' ) ) :
 			}
 		}
 
-		if ( $is_gallery_page ) {
-			wp_enqueue_script(
-				'renalinfolk-gallery-filter',
-				get_template_directory_uri() . '/assets/js/gallery-filter.js',
-				array(),
-				wp_get_theme()->get( 'Version' ),
-				true
-			);
-
-			// Localize script with REST API URL and nonce
-			wp_localize_script(
-				'renalinfolk-gallery-filter',
-				'renalinfolkGallery',
-				array(
-					'restUrl'   => esc_url_raw( rest_url( 'wp/v2/posts' ) ),
-					'restNonce' => wp_create_nonce( 'wp_rest' ),
-				)
-			);
-		}
+		// Gallery filter functionality is now handled by the Query Filter Container custom block
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_gallery_filters' );
@@ -574,9 +556,34 @@ if ( ! function_exists( 'renalinfolk_handle_query_filters' ) ) :
 	 * @return void
 	 */
 	function renalinfolk_handle_query_filters( $query ) {
-		// Only modify main query on frontend
-		if ( is_admin() || ! $query->is_main_query() ) {
+		// Skip admin queries
+		if ( is_admin() ) {
 			return;
+		}
+
+		// Only modify main query or Query Loop blocks on frontend
+		// Query Loop blocks are not main queries but should still be filtered
+		if ( ! $query->is_main_query() ) {
+			// Check if this is a Query Loop block query by verifying it's a WP_Query
+			// and has filter parameters in the URL
+			$has_filters = isset( $_GET['sort'] ) || isset( $_GET['date_after'] ) ||
+			               isset( $_GET['date_before'] ) || isset( $_GET['category'] ) ||
+			               isset( $_GET['tag'] ) || isset( $_GET['author'] ) || isset( $_GET['s'] );
+
+			if ( ! $has_filters ) {
+				return;
+			}
+		}
+
+		// Handle search FIRST - this is critical for Query Loop blocks
+		if ( isset( $_GET['s'] ) && ! empty( $_GET['s'] ) ) {
+			$search_term = sanitize_text_field( $_GET['s'] );
+			$query->set( 's', $search_term );
+			// Ensure post type is set for search (respect existing post_type if set)
+			$current_post_type = $query->get( 'post_type' );
+			if ( empty( $current_post_type ) ) {
+				$query->set( 'post_type', 'post' );
+			}
 		}
 
 		// Handle sort parameter
@@ -620,16 +627,78 @@ if ( ! function_exists( 'renalinfolk_handle_query_filters' ) ) :
 			}
 		}
 
-		// Handle category filtering (comma-separated slugs)
+		// Handle category filtering (array or comma-separated slugs)
 		if ( isset( $_GET['category'] ) && ! empty( $_GET['category'] ) ) {
-			$category_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['category'] ) );
-			$query->set( 'category_name', implode( ',', $category_slugs ) );
+			if ( is_array( $_GET['category'] ) ) {
+				$category_slugs = array_map( 'sanitize_text_field', $_GET['category'] );
+			} else {
+				$category_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['category'] ) );
+			}
+			// Remove empty values
+			$category_slugs = array_filter( $category_slugs );
+			if ( ! empty( $category_slugs ) ) {
+				// Use tax_query to allow combining with existing taxonomy constraints
+				$existing_tax_query = $query->get( 'tax_query' );
+				if ( ! is_array( $existing_tax_query ) ) {
+					$existing_tax_query = array();
+				}
+
+				// Add our category filter
+				$existing_tax_query[] = array(
+					'taxonomy' => 'category',
+					'field'    => 'slug',
+					'terms'    => $category_slugs,
+					'operator' => 'IN',
+				);
+
+				// Set relation to AND if multiple taxonomies
+				if ( count( $existing_tax_query ) > 1 && ! isset( $existing_tax_query['relation'] ) ) {
+					$existing_tax_query['relation'] = 'AND';
+				}
+
+				$query->set( 'tax_query', $existing_tax_query );
+			}
 		}
 
-		// Handle tag filtering (comma-separated slugs)
+		// Handle tag filtering (array or comma-separated slugs)
 		if ( isset( $_GET['tag'] ) && ! empty( $_GET['tag'] ) ) {
-			$tag_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['tag'] ) );
-			$query->set( 'tag_slug__in', $tag_slugs );
+			if ( is_array( $_GET['tag'] ) ) {
+				$tag_slugs = array_map( 'sanitize_text_field', $_GET['tag'] );
+			} else {
+				$tag_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['tag'] ) );
+			}
+			// Remove empty values
+			$tag_slugs = array_filter( $tag_slugs );
+			if ( ! empty( $tag_slugs ) ) {
+				// Use tax_query to allow combining with existing taxonomy constraints
+				$existing_tax_query = $query->get( 'tax_query' );
+				if ( ! is_array( $existing_tax_query ) ) {
+					$existing_tax_query = array();
+				}
+
+				// Add our tag filter
+				$existing_tax_query[] = array(
+					'taxonomy' => 'post_tag',
+					'field'    => 'slug',
+					'terms'    => $tag_slugs,
+					'operator' => 'IN',
+				);
+
+				// Set relation to AND if multiple taxonomies
+				if ( count( $existing_tax_query ) > 1 && ! isset( $existing_tax_query['relation'] ) ) {
+					$existing_tax_query['relation'] = 'AND';
+				}
+
+				$query->set( 'tax_query', $existing_tax_query );
+			}
+		}
+
+		// Handle author filtering
+		if ( isset( $_GET['author'] ) && ! empty( $_GET['author'] ) ) {
+			$author_id = absint( $_GET['author'] );
+			if ( $author_id > 0 ) {
+				$query->set( 'author', $author_id );
+			}
 		}
 	}
 endif;

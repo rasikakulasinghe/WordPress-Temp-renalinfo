@@ -260,28 +260,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
    Article Gallery Filters - Interactive Components
    ========================================================================== */
 
-/* Gallery Filter Buttons - New unified filter system */
-.gallery-filter-btn {
-	transition: all 0.3s ease;
-}
-
-.gallery-filter-btn a {
-	cursor: pointer;
-	transition: all 0.3s ease;
-	text-decoration: none;
-}
-
-.gallery-filter-btn:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.gallery-filter-btn.is-active {
-	background-color: var(--wp--preset--color--green-blue) !important;
-	color: var(--wp--preset--color--base) !important;
-	border-color: var(--wp--preset--color--green-blue) !important;
-	box-shadow: 0 2px 6px rgba(0, 109, 119, 0.3);
-}
+/* Gallery filter functionality is now handled by the Query Filter Container custom block */
 
 /* Filter Category Buttons - Legacy support */
 .filter-category-btn .wp-block-button__link {

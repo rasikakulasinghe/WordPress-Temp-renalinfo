@@ -1,16 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, TextControl, SelectControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
 	const {
-		showSearch,
 		showSortOrder,
 		showDate,
 		showTaxonomy,
-		targetTaxonomy,
-		showAuthor,
 		toggleLabel
 	} = attributes;
 
@@ -19,27 +16,14 @@ export default function Edit({ attributes, setAttributes }) {
 	});
 
 	const activeFilters = [];
-	if (showSearch) activeFilters.push(__('Search', 'renalinfolk'));
 	if (showSortOrder) activeFilters.push(__('Sort Order', 'renalinfolk'));
 	if (showDate) activeFilters.push(__('Date Range', 'renalinfolk'));
-	if (showTaxonomy) {
-		const taxonomyName = targetTaxonomy === 'category'
-			? __('Categories', 'renalinfolk')
-			: __('Tags', 'renalinfolk');
-		activeFilters.push(`${__('Taxonomy', 'renalinfolk')} (${taxonomyName})`);
-	}
-	if (showAuthor) activeFilters.push(__('Author', 'renalinfolk'));
+	if (showTaxonomy) activeFilters.push(__('Tags', 'renalinfolk'));
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Filter Settings', 'renalinfolk')} initialOpen={true}>
-					<ToggleControl
-						label={__('Enable Search', 'renalinfolk')}
-						checked={showSearch}
-						onChange={(value) => setAttributes({ showSearch: value })}
-						help={__('Allow visitors to search posts by keyword', 'renalinfolk')}
-					/>
 					<ToggleControl
 						label={__('Enable Sort Order', 'renalinfolk')}
 						checked={showSortOrder}
@@ -53,28 +37,10 @@ export default function Edit({ attributes, setAttributes }) {
 						help={__('Allow visitors to filter by date range', 'renalinfolk')}
 					/>
 					<ToggleControl
-						label={__('Enable Taxonomy Filter', 'renalinfolk')}
+						label={__('Enable Tag Filter', 'renalinfolk')}
 						checked={showTaxonomy}
 						onChange={(value) => setAttributes({ showTaxonomy: value })}
-						help={__('Allow visitors to filter by category or tag', 'renalinfolk')}
-					/>
-					{showTaxonomy && (
-						<SelectControl
-							label={__('Select Taxonomy', 'renalinfolk')}
-							value={targetTaxonomy}
-							options={[
-								{ label: __('Categories', 'renalinfolk'), value: 'category' },
-								{ label: __('Tags', 'renalinfolk'), value: 'post_tag' }
-							]}
-							onChange={(value) => setAttributes({ targetTaxonomy: value })}
-							help={__('Choose which taxonomy to display', 'renalinfolk')}
-						/>
-					)}
-					<ToggleControl
-						label={__('Enable Author Filter', 'renalinfolk')}
-						checked={showAuthor}
-						onChange={(value) => setAttributes({ showAuthor: value })}
-						help={__('Allow visitors to filter by author', 'renalinfolk')}
+						help={__('Allow visitors to filter by tags', 'renalinfolk')}
 					/>
 					<TextControl
 						label={__('Filter Toggle Button Label', 'renalinfolk')}

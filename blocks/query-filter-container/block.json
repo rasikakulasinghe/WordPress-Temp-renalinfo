@@ -18,10 +18,6 @@
 		}
 	},
 	"attributes": {
-		"showSearch": {
-			"type": "boolean",
-			"default": true
-		},
 		"showSortOrder": {
 			"type": "boolean",
 			"default": true
@@ -33,14 +29,6 @@
 		"showTaxonomy": {
 			"type": "boolean",
 			"default": true
-		},
-		"targetTaxonomy": {
-			"type": "string",
-			"default": "category"
-		},
-		"showAuthor": {
-			"type": "boolean",
-			"default": false
 		},
 		"toggleLabel": {
 			"type": "string",
