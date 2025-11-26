@@ -6,7 +6,7 @@
 	"title": "Query Filter Container",
 	"category": "widgets",
 	"icon": "filter",
-	"description": "Adds a collapsible filter toolbar for Query Loop blocks with search, sort, taxonomy, date range, and author filters.",
+	"description": "Adds a fixed sidebar filter for Query Loop blocks with sort order, date range, and button-style tag filters.",
 	"keywords": ["filter", "search", "query", "sort", "taxonomy"],
 	"textdomain": "renalinfolk",
 	"supports": {
@@ -29,10 +29,6 @@
 		"showTaxonomy": {
 			"type": "boolean",
 			"default": true
-		},
-		"toggleLabel": {
-			"type": "string",
-			"default": "Filter & Sort"
 		}
 	},
 	"editorScript": "file:./build/index.js",

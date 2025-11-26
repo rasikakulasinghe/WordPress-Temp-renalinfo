@@ -844,6 +844,11 @@
 			"name": "post-video-gallery",
 			"postTypes": ["post"],
 			"title": "Post Video"
+		},
+		{
+			"name": "page-gallery-news",
+			"postTypes": ["page"],
+			"title": "Page Gallery News"
 		}
 	]
 }

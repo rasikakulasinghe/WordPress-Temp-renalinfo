@@ -1,14 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
 	const {
 		showSortOrder,
 		showDate,
-		showTaxonomy,
-		toggleLabel
+		showTaxonomy
 	} = attributes;
 
 	const blockProps = useBlockProps({
@@ -40,13 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
 						label={__('Enable Tag Filter', 'renalinfolk')}
 						checked={showTaxonomy}
 						onChange={(value) => setAttributes({ showTaxonomy: value })}
-						help={__('Allow visitors to filter by tags', 'renalinfolk')}
-					/>
-					<TextControl
-						label={__('Filter Toggle Button Label', 'renalinfolk')}
-						value={toggleLabel}
-						onChange={(value) => setAttributes({ toggleLabel: value })}
-						help={__('Custom label for the filter toggle button', 'renalinfolk')}
+						help={__('Show button-style tag filter in sidebar', 'renalinfolk')}
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -54,12 +47,9 @@ export default function Edit({ attributes, setAttributes }) {
 			<div {...blockProps}>
 				<div className="renalinfolk-query-filter-preview__header">
 					<span className="renalinfolk-query-filter-preview__icon">⚙️</span>
-					<h3>{__('Query Filter Container', 'renalinfolk')}</h3>
+					<h3>{__('Query Filter Sidebar', 'renalinfolk')}</h3>
 				</div>
 				<div className="renalinfolk-query-filter-preview__content">
-					<p>
-						<strong>{__('Toggle Label:', 'renalinfolk')}</strong> {toggleLabel || __('Filter & Sort', 'renalinfolk')}
-					</p>
 					{activeFilters.length > 0 ? (
 						<>
 							<p><strong>{__('Active Filters:', 'renalinfolk')}</strong></p>
@@ -74,7 +64,7 @@ export default function Edit({ attributes, setAttributes }) {
 					)}
 				</div>
 				<div className="renalinfolk-query-filter-preview__note">
-					{__('This block will display a collapsible filter toolbar on the frontend.', 'renalinfolk')}
+					{__('This block will display a fixed sidebar filter on the frontend.', 'renalinfolk')}
 				</div>
 			</div>
 		</>

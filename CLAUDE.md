@@ -255,25 +255,27 @@ Custom implementation for video posts:
 
 **Location:** `blocks/query-filter-container/`
 
-A custom dynamic block that adds collapsible filter toolbar for Query Loop blocks with simplified filtering options.
+A custom dynamic block that renders a fixed sidebar filter for Query Loop blocks with button-style tag selection.
 
 **Features:**
-- Sort by date or title (A-Z)
-- Filter by date range
-- Filter by tags (multi-select)
+- Fixed sidebar layout (320px width, full viewport height)
+- Gradient background (teal to dark blue)
+- Sort by date (ascending/descending)
+- Filter by date range with calendar icon overlays
+- Button-style tag filter in 3-column grid (scrollable)
+- Custom blue scrollbar for tag container
 - Fully responsive (mobile-first design)
 - Accessible (WCAG AA compliant)
-- Vanilla JavaScript for instant UI toggle (no page reload)
+- Vanilla JavaScript for tag button selection
 
 **Block Attributes:**
 - `showSortOrder` (boolean, default: true) - Enable sort dropdown
-- `showDate` (boolean, default: false) - Enable date range inputs
-- `showTaxonomy` (boolean, default: true) - Enable tag filter (always displays tags with multi-select)
-- `toggleLabel` (string, default: "Filter & Sort") - Custom button label
+- `showDate` (boolean, default: false) - Enable date range inputs with calendar icons
+- `showTaxonomy` (boolean, default: true) - Enable button-style tag filter
 
 **URL Parameters:**
 The block filters posts via URL parameters that WordPress Query Loop automatically respects:
-- `?sort=date-desc|date-asc|title-asc|title-desc` - Sort order
+- `?sort=date-desc|date-asc` - Sort order
 - `?date_after=YYYY-MM-DD&date_before=YYYY-MM-DD` - Date range
 - `?tag=slug1,slug2` - Filter by tag slugs (comma-separated for multiple tags)
 
@@ -281,20 +283,21 @@ The block filters posts via URL parameters that WordPress Query Loop automatical
 ```html
 <!-- wp:renalinfolk/query-filter-container {
   "showSortOrder": true,
-  "showDate": false,
-  "showTaxonomy": true,
-  "toggleLabel": "Filter & Sort"
+  "showDate": true,
+  "showTaxonomy": true
 } /-->
 
-<!-- wp:query {...} -->
-  <!-- Query Loop displays filtered posts here -->
-<!-- /wp:query -->
+<!-- wp:group with margin-left: 340px for content -->
+  <!-- wp:query {...} -->
+    <!-- Query Loop displays filtered posts here -->
+  <!-- /wp:query -->
+<!-- /wp:group -->
 ```
 
 **Admin Configuration:**
 1. Insert block in Site Editor (Appearance > Editor)
 2. Use InspectorControls sidebar to enable/disable filters (sort order, date range, tags)
-3. Customize toggle button label
+3. Sidebar is always visible - no toggle functionality
 
 **Build Process:**
 ```bash
@@ -315,13 +318,28 @@ Built assets are output to `blocks/query-filter-container/build/`:
 - Registration: functions.php:540 (`renalinfolk_register_query_filter_block()`)
 - Query filtering: functions.php:555 (`renalinfolk_handle_query_filters()`)
 - Frontend rendering: blocks/query-filter-container/render.php
-- Interactivity: Vanilla JavaScript toggle (blocks/query-filter-container/build/view.js)
+- Tag button selection: Vanilla JavaScript (blocks/query-filter-container/build/view.js)
+- Date picker sync: JavaScript syncs hidden date picker with display input
+
+**Tag Button Selection:**
+- Click tag button to select/deselect (blue background = selected)
+- Multiple tags can be selected simultaneously
+- Selected tags persist on page load via URL parameters
+- Hidden input stores comma-separated tag slugs for form submission
+- Keyboard accessible: Space/Enter keys toggle selection
+
+**Responsive Behavior:**
+- Desktop (1024px+): Fixed sidebar 320px wide, content margin-left: 340px
+- Tablet (768-1023px): Fixed sidebar 280px wide
+- Mobile (<768px): Sidebar becomes relative positioning, full-width
+- Tag grid: 3 columns desktop, 2 columns mobile
 
 **Testing:**
-- Keyboard navigation: Tab through all inputs, Enter/Space to toggle
-- Screen readers: ARIA attributes (`aria-expanded`, `aria-labelledby`, `role="region"`)
-- Mobile: Inputs stack vertically, buttons full-width
-- Contrast: All text meets 4.5:1 ratio, UI elements 3:1
+- Keyboard navigation: Tab through all inputs, Enter/Space to select tags
+- Screen readers: ARIA attributes (`aria-pressed` on tag buttons)
+- Mobile: Tag buttons have 44px min-height for touch targets
+- Contrast: White text on gradient background meets WCAG AA standards
+- Calendar icons: Clickable to open native date picker
 
 ## WordPress Resources
 
