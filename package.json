@@ -1,0 +1,20 @@
+{
+  "name": "renalinfolk",
+  "version": "2.0.0",
+  "description": "WordPress block theme for pediatric nephrology departments",
+  "scripts": {
+    "build": "wp-scripts build blocks/query-filter-container/src/index.js blocks/query-filter-container/src/view.js --output-path=blocks/query-filter-container/build",
+    "start": "wp-scripts start blocks/query-filter-container/src/index.js blocks/query-filter-container/src/view.js --output-path=blocks/query-filter-container/build"
+  },
+  "keywords": [
+    "wordpress",
+    "block-theme",
+    "medical"
+  ],
+  "author": "Renalinfolk",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0",
+    "ajv": "^8.17.1"
+  }
+}

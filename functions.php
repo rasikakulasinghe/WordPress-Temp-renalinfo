@@ -403,29 +403,60 @@ if ( ! function_exists( 'renalinfolk_enqueue_video_embed_script' ) ) :
 endif;
 add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_video_embed_script' );
 
-// Enqueue article gallery filter script.
-if ( ! function_exists( 'renalinfolk_enqueue_article_filters' ) ) :
+// Enqueue gallery filter script for all gallery types.
+if ( ! function_exists( 'renalinfolk_enqueue_gallery_filters' ) ) :
 	/**
-	 * Enqueues JavaScript for article gallery filtering and sorting.
+	 * Enqueues JavaScript for gallery filtering and sorting (articles, images, news, publications, videos).
 	 *
 	 * @since Renalinfolk 2.0
 	 *
 	 * @return void
 	 */
-	function renalinfolk_enqueue_article_filters() {
-		// Only enqueue on article gallery pages.
-		if ( is_page_template( 'templates/page-gallery-article.html' ) || is_page_template( 'page-gallery-article' ) ) {
+	function renalinfolk_enqueue_gallery_filters() {
+		// Enqueue on all gallery page templates.
+		$gallery_templates = array(
+			'templates/page-gallery-article.html',
+			'templates/page-gallery-image.html',
+			'templates/page-gallery-news.html',
+			'templates/page-gallery-publication.html',
+			'templates/page-gallery-video.html',
+			'page-gallery-article',
+			'page-gallery-image',
+			'page-gallery-news',
+			'page-gallery-publication',
+			'page-gallery-video',
+		);
+
+		$is_gallery_page = false;
+		foreach ( $gallery_templates as $template ) {
+			if ( is_page_template( $template ) ) {
+				$is_gallery_page = true;
+				break;
+			}
+		}
+
+		if ( $is_gallery_page ) {
 			wp_enqueue_script(
-				'renalinfolk-article-filters',
-				get_template_directory_uri() . '/assets/js/article-gallery-filters.js',
+				'renalinfolk-gallery-filter',
+				get_template_directory_uri() . '/assets/js/gallery-filter.js',
 				array(),
 				wp_get_theme()->get( 'Version' ),
 				true
 			);
+
+			// Localize script with REST API URL and nonce
+			wp_localize_script(
+				'renalinfolk-gallery-filter',
+				'renalinfolkGallery',
+				array(
+					'restUrl'   => esc_url_raw( rest_url( 'wp/v2/posts' ) ),
+					'restNonce' => wp_create_nonce( 'wp_rest' ),
+				)
+			);
 		}
 	}
 endif;
-add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_article_filters' );
+add_action( 'wp_enqueue_scripts', 'renalinfolk_enqueue_gallery_filters' );
 
 // Enqueue video meta editor script in the block editor.
 if ( ! function_exists( 'renalinfolk_enqueue_video_meta_editor' ) ) :
@@ -504,6 +535,105 @@ if ( ! function_exists( 'renalinfolk_render_video_embed' ) ) :
 	}
 endif;
 add_filter( 'render_block', 'renalinfolk_render_video_embed', 10, 2 );
+
+// Register custom Query Filter Container block.
+if ( ! function_exists( 'renalinfolk_register_query_filter_block' ) ) :
+	/**
+	 * Registers the Query Filter Container custom block.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @return void
+	 */
+	function renalinfolk_register_query_filter_block() {
+		// Register the view script
+		wp_register_script(
+			'renalinfolk-query-filter-view',
+			get_theme_file_uri( 'blocks/query-filter-container/build/view.js' ),
+			array(),
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
+
+		// Register the block
+		register_block_type( __DIR__ . '/blocks/query-filter-container', array(
+			'view_script' => 'renalinfolk-query-filter-view',
+		) );
+	}
+endif;
+add_action( 'init', 'renalinfolk_register_query_filter_block' );
+
+// Handle query parameter filtering for Query Loop.
+if ( ! function_exists( 'renalinfolk_handle_query_filters' ) ) :
+	/**
+	 * Modifies the main query to respect filter parameters from URL.
+	 *
+	 * @since Renalinfolk 2.0
+	 *
+	 * @param WP_Query $query The WordPress Query instance.
+	 * @return void
+	 */
+	function renalinfolk_handle_query_filters( $query ) {
+		// Only modify main query on frontend
+		if ( is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+
+		// Handle sort parameter
+		if ( isset( $_GET['sort'] ) ) {
+			$sort = sanitize_text_field( $_GET['sort'] );
+			switch ( $sort ) {
+				case 'date-desc':
+					$query->set( 'orderby', 'date' );
+					$query->set( 'order', 'DESC' );
+					break;
+				case 'date-asc':
+					$query->set( 'orderby', 'date' );
+					$query->set( 'order', 'ASC' );
+					break;
+				case 'title-asc':
+					$query->set( 'orderby', 'title' );
+					$query->set( 'order', 'ASC' );
+					break;
+				case 'title-desc':
+					$query->set( 'orderby', 'title' );
+					$query->set( 'order', 'DESC' );
+					break;
+			}
+		}
+
+		// Handle date range filtering
+		if ( isset( $_GET['date_after'] ) || isset( $_GET['date_before'] ) ) {
+			$date_query = array();
+
+			if ( isset( $_GET['date_after'] ) && ! empty( $_GET['date_after'] ) ) {
+				$date_query['after'] = sanitize_text_field( $_GET['date_after'] );
+			}
+
+			if ( isset( $_GET['date_before'] ) && ! empty( $_GET['date_before'] ) ) {
+				$date_query['before'] = sanitize_text_field( $_GET['date_before'] );
+			}
+
+			if ( ! empty( $date_query ) ) {
+				$date_query['inclusive'] = true;
+				$query->set( 'date_query', array( $date_query ) );
+			}
+		}
+
+		// Handle category filtering (comma-separated slugs)
+		if ( isset( $_GET['category'] ) && ! empty( $_GET['category'] ) ) {
+			$category_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['category'] ) );
+			$query->set( 'category_name', implode( ',', $category_slugs ) );
+		}
+
+		// Handle tag filtering (comma-separated slugs)
+		if ( isset( $_GET['tag'] ) && ! empty( $_GET['tag'] ) ) {
+			$tag_slugs = array_map( 'sanitize_text_field', explode( ',', $_GET['tag'] ) );
+			$query->set( 'tag_slug__in', $tag_slugs );
+		}
+	}
+endif;
+add_action( 'pre_get_posts', 'renalinfolk_handle_query_filters' );
 
 // Add data attributes to article cards for filtering.
 if ( ! function_exists( 'renalinfolk_add_article_card_data' ) ) :

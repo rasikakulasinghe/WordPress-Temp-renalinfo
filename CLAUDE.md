@@ -65,6 +65,7 @@ Supplementary styles only (theme.json is primary):
 /styles/             - 01-evening.json, 02-dark.json (style variations)
 /assets/fonts/       - Lexend, Fira Code (variable fonts)
 /assets/js/          - video-embed.js, video-meta-editor.js
+/blocks/             - Custom blocks (query-filter-container)
 /openspec/           - Change management specs
 ```
 
@@ -82,6 +83,19 @@ C:/xampp/php/php.exe -l functions.php
 # Validate style variations
 node -e "JSON.parse(require('fs').readFileSync('styles/01-evening.json', 'utf8'))"
 node -e "JSON.parse(require('fs').readFileSync('styles/02-dark.json', 'utf8'))"
+```
+
+### Custom Block Development
+
+```bash
+# Install dependencies (required before building blocks)
+npm install --legacy-peer-deps
+
+# Build custom blocks for production
+npm run build
+
+# Start development mode with auto-rebuild
+npm start
 ```
 
 ### WordPress CLI (if available)
@@ -235,6 +249,90 @@ Custom implementation for video posts:
 - Text domain: `renalinfolk` (in all `__()`, `_e()`, `_x()` calls)
 - Never use `twentytwentyfive` or other theme domains
 
+## Custom Blocks
+
+### Query Filter Container Block
+
+**Location:** `blocks/query-filter-container/`
+
+A custom dynamic block that adds collapsible filter toolbar for Query Loop blocks.
+
+**Features:**
+- Search by keyword
+- Sort by date or title (A-Z)
+- Filter by date range
+- Filter by taxonomy (category or tag)
+- Filter by author
+- Fully responsive (mobile-first design)
+- Accessible (WCAG AA compliant)
+- Vanilla JavaScript for instant UI toggle (no page reload)
+
+**Block Attributes:**
+- `showSearch` (boolean, default: true) - Enable search input
+- `showSortOrder` (boolean, default: true) - Enable sort dropdown
+- `showDate` (boolean, default: false) - Enable date range inputs
+- `showTaxonomy` (boolean, default: true) - Enable taxonomy filter
+- `targetTaxonomy` (string, default: "category") - Which taxonomy to display
+- `showAuthor` (boolean, default: false) - Enable author dropdown
+- `toggleLabel` (string, default: "Filter & Sort") - Custom button label
+
+**URL Parameters:**
+The block filters posts via URL parameters that WordPress Query Loop automatically respects:
+- `?s=keyword` - Search posts
+- `?sort=date-desc|date-asc|title-asc|title-desc` - Sort order
+- `?date_after=YYYY-MM-DD&date_before=YYYY-MM-DD` - Date range
+- `?category=slug1,slug2` - Filter by category slugs (comma-separated)
+- `?tag=slug1,slug2` - Filter by tag slugs (comma-separated)
+- `?author=5` - Filter by author ID
+
+**Usage in Templates:**
+```html
+<!-- wp:renalinfolk/query-filter-container {
+  "showSearch": true,
+  "showTaxonomy": true,
+  "targetTaxonomy": "category",
+  "showSortOrder": true,
+  "toggleLabel": "Filter & Sort"
+} /-->
+
+<!-- wp:query {...} -->
+  <!-- Query Loop displays filtered posts here -->
+<!-- /wp:query -->
+```
+
+**Admin Configuration:**
+1. Insert block in Site Editor (Appearance > Editor)
+2. Use InspectorControls sidebar to show/hide filters
+3. Configure taxonomy type (category vs tag)
+4. Customize toggle button label
+
+**Build Process:**
+```bash
+# Development (auto-rebuild on save)
+npm start
+
+# Production build
+npm run build
+```
+
+Built assets are output to `blocks/query-filter-container/build/`:
+- `index.js` - Editor JavaScript
+- `view.js` - Frontend Interactivity API
+- `style-index.css` - Frontend + Editor styles
+- `index.css` - Editor-only styles
+
+**Implementation Details:**
+- Registration: functions.php:540 (`renalinfolk_register_query_filter_block()`)
+- Query filtering: functions.php:555 (`renalinfolk_handle_query_filters()`)
+- Frontend rendering: blocks/query-filter-container/render.php
+- Interactivity: Vanilla JavaScript toggle (blocks/query-filter-container/build/view.js)
+
+**Testing:**
+- Keyboard navigation: Tab through all inputs, Enter/Space to toggle
+- Screen readers: ARIA attributes (`aria-expanded`, `aria-labelledby`, `role="region"`)
+- Mobile: Inputs stack vertically, buttons full-width
+- Contrast: All text meets 4.5:1 ratio, UI elements 3:1
+
 ## WordPress Resources
 
 - Block Theme Handbook: https://developer.wordpress.org/themes/block-themes/
@@ -243,3 +341,4 @@ Custom implementation for video posts:
 - Block Patterns: https://developer.wordpress.org/themes/features/block-patterns/
 - Core Blocks: https://developer.wordpress.org/block-editor/reference-guides/core-blocks/
 - Full Site Editing: https://wordpress.org/documentation/article/site-editor/
+- Interactivity API: https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/

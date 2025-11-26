@@ -18,7 +18,16 @@
       "Bash(php -r:*)",
       "Bash(git rm:*)",
       "Bash(C:/xampp/php/php.exe -l functions.php)",
-      "Bash(openspec --help:*)"
+      "Bash(openspec --help:*)",
+      "Bash(del \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\assets\\js\\article-gallery-filters.js\")",
+      "WebFetch(domain:free.searchandfilter.com)",
+      "Bash(del \"C:\\xampp\\htdocs\\renalinfolk\\wp-content\\themes\\renalinfolk\\assets\\js\\gallery-filter.js\")",
+      "Bash(node --version:*)",
+      "Bash(npm --version)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(C:/xampp/php/php.exe -l blocks/query-filter-container/render.php)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

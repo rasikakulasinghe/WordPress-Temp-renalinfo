@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "renalinfolk/query-filter-container",
+	"version": "1.0.0",
+	"title": "Query Filter Container",
+	"category": "widgets",
+	"icon": "filter",
+	"description": "Adds a collapsible filter toolbar for Query Loop blocks with search, sort, taxonomy, date range, and author filters.",
+	"keywords": ["filter", "search", "query", "sort", "taxonomy"],
+	"textdomain": "renalinfolk",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"showSearch": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSortOrder": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": false
+		},
+		"showTaxonomy": {
+			"type": "boolean",
+			"default": true
+		},
+		"targetTaxonomy": {
+			"type": "string",
+			"default": "category"
+		},
+		"showAuthor": {
+			"type": "boolean",
+			"default": false
+		},
+		"toggleLabel": {
+			"type": "string",
+			"default": "Filter & Sort"
+		}
+	},
+	"editorScript": "file:./build/index.js",
+	"viewScript": "file:./build/view.js",
+	"style": "file:./build/style-index.css",
+	"editorStyle": "file:./build/index.css",
+	"render": "file:./render.php"
+}
