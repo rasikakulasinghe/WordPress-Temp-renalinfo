@@ -1,8 +1,4 @@
-<!--
-Template Name: Article Viewer
-Template Post Type: post
--->
-<!-- wp:template-part {"slug":"header","area":"header"} /-->
+<!-- wp:template-part {"slug":"header","theme":"renalinfolk","area":"header"} /-->
 
 <!-- wp:group {"tagName":"main","metadata":{"name":"Main Content"},"align":"full","layout":{"type":"constrained","contentSize":"900px","wideSize":"1200px"}} -->
 <main class="wp-block-group alignfull"><!-- wp:columns {"align":"wide","className":"is-stacked-on-mobile","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"0"},"blockGap":{"top":"var:preset|spacing|20","left":"var:preset|spacing|20"}}}} -->
@@ -94,8 +90,8 @@ Template Post Type: post
 
 <!-- wp:post-content {"fontSize":"large","layout":{"type":"constrained"}} /-->
 
-<!-- wp:separator {"className":"is-style-dots","style":{"spacing":{"margin":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"backgroundColor":"accent-4"} -->
-<hr class="wp-block-separator has-text-color has-accent-4-color has-alpha-channel-opacity has-accent-4-background-color has-background is-style-dots" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
+<!-- wp:separator {"className":"is-style-dots","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"backgroundColor":"accent-4"} -->
+<hr class="wp-block-separator has-text-color has-accent-4-color has-alpha-channel-opacity has-accent-4-background-color has-background is-style-dots" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20)"/>
 <!-- /wp:separator -->
 
 <!-- wp:comments -->
@@ -123,91 +119,41 @@ Template Post Type: post
 <!-- /wp:columns -->
 <!-- /wp:comment-template -->
 
-<!-- wp:comments-pagination /-->
+<!-- wp:comments-pagination -->
+<!-- wp:comments-pagination-previous /-->
+
+<!-- wp:comments-pagination-numbers /-->
+
+<!-- wp:comments-pagination-next /-->
+<!-- /wp:comments-pagination -->
 
 <!-- wp:post-comments-form /--></div>
 <!-- /wp:comments -->
 
-<!-- wp:separator {"className":"is-style-wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"accent-4"} -->
-<hr class="wp-block-separator has-text-color has-accent-4-color has-alpha-channel-opacity has-accent-4-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--60);margin-bottom:var(--wp--preset--spacing--60)"/>
+<!-- wp:separator {"className":"is-style-wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"accent-4"} -->
+<hr class="wp-block-separator has-text-color has-accent-4-color has-alpha-channel-opacity has-accent-4-background-color has-background is-style-wide" style="margin-top:0;margin-bottom:0"/>
 <!-- /wp:separator -->
 
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40","margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)"><!-- wp:heading {"style":{"typography":{"fontSize":"clamp(1.5rem, 3vw, 2rem)","fontWeight":"700"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}},"textColor":"primary-dark"} -->
-<h2 class="wp-block-heading has-primary-dark-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--40);font-size:clamp(1.5rem, 3vw, 2rem);font-weight:700">Related Resources</h2>
+<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="margin-top:0"><!-- wp:heading {"style":{"typography":{"fontSize":"20px","fontWeight":"700","fontStyle":"normal"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}},"textColor":"primary-dark"} -->
+<h2 class="wp-block-heading has-primary-dark-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--20);font-size:20px;font-style:normal;font-weight:700">Related Resources</h2>
 <!-- /wp:heading -->
 
-<!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"className":"resource-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"},"border":{"radius":"12px"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group resource-card has-base-background-color has-background" style="border-radius:12px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"style":{"spacing":{"blockGap":"12px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontSize":"1.5rem"}},"textColor":"green-blue"} -->
-<p class="has-green-blue-color has-text-color" style="font-size:1.5rem">▶️</p>
-<!-- /wp:paragraph -->
+<!-- wp:query {"queryId":23,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"taxQuery":{"category":[57]},"parents":[],"format":[]},"metadata":{"categories":["posts"],"patternName":"core/query-grid-posts","name":"Grid"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20"}}},"layout":{"inherit":false}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:post-title {"isLink":true,"fontSize":"large"} /-->
 
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"700"}},"textColor":"primary-dark"} -->
-<h3 class="wp-block-heading has-primary-dark-color has-text-color" style="font-size:1.125rem;font-weight:700">Video: A Kid's Guide to Kidneys</h3>
-<!-- /wp:heading --></div>
+<!-- wp:post-excerpt {"excerptLength":25,"fontSize":"small"} /-->
+
+<!-- wp:post-date {"fontSize":"small"} /--></div>
 <!-- /wp:group -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","lineHeight":"1.6"}},"textColor":"text-light"} -->
-<p class="has-text-light-color has-text-color" style="font-size:0.875rem;line-height:1.6">An animated video that explains how kidneys work in a fun and engaging way for children.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-<p class="has-primary-color has-text-color has-link-color" style="font-size:0.875rem;font-weight:700"><a href="#">Watch Video →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"className":"resource-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"},"border":{"radius":"12px"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group resource-card has-base-background-color has-background" style="border-radius:12px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"style":{"spacing":{"blockGap":"12px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontSize":"1.5rem"}},"textColor":"green-blue"} -->
-<p class="has-green-blue-color has-text-color" style="font-size:1.5rem">🖼️</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"700"}},"textColor":"primary-dark"} -->
-<h3 class="wp-block-heading has-primary-dark-color has-text-color" style="font-size:1.125rem;font-weight:700">Poster: Healthy Hydration Habits</h3>
-<!-- /wp:heading --></div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","lineHeight":"1.6"}},"textColor":"text-light"} -->
-<p class="has-text-light-color has-text-color" style="font-size:0.875rem;line-height:1.6">A downloadable poster with tips on how to keep your child well-hydrated for optimal kidney health.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-<p class="has-primary-color has-text-color has-link-color" style="font-size:0.875rem;font-weight:700"><a href="#">View Poster →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"className":"resource-card","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|30"},"border":{"radius":"12px"}},"backgroundColor":"base","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group resource-card has-base-background-color has-background" style="border-radius:12px;padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"style":{"spacing":{"blockGap":"12px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"style":{"typography":{"fontSize":"1.5rem"}},"textColor":"green-blue"} -->
-<p class="has-green-blue-color has-text-color" style="font-size:1.5rem">📄</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"700"}},"textColor":"primary-dark"} -->
-<h3 class="wp-block-heading has-primary-dark-color has-text-color" style="font-size:1.125rem;font-weight:700">Article: Navigating UTIs in Toddlers</h3>
-<!-- /wp:heading --></div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","lineHeight":"1.6"}},"textColor":"text-light"} -->
-<p class="has-text-light-color has-text-color" style="font-size:0.875rem;line-height:1.6">Learn to recognize the signs of Urinary Tract Infections in young children and when to seek medical help.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.875rem","fontWeight":"700"},"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
-<p class="has-primary-color has-text-color has-link-color" style="font-size:0.875rem;font-weight:700"><a href="#">Read Article →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:post-template --></div>
+<!-- /wp:query --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
+<!-- wp:template-part {"slug":"footer","theme":"renalinfolk","tagName":"footer"} /-->
