@@ -849,6 +849,31 @@
 			"name": "page-gallery-news",
 			"postTypes": ["page"],
 			"title": "Page Gallery News"
+		},
+		{
+			"name": "page-diagnostic-services",
+			"postTypes": ["page"],
+			"title": "Page - Diagnostic Services"
+		},
+		{
+			"name": "page-dialysis-and-transplant",
+			"postTypes": ["page"],
+			"title": "Page - Dialysis and Transplant"
+		},
+		{
+			"name": "page-counseling-and-supports",
+			"postTypes": ["page"],
+			"title": "Page - Counseling & Support"
+		},
+		{
+			"name": "page-privacy",
+			"postTypes": ["page"],
+			"title": "Page - Privacy Policy"
+		},
+		{
+			"name": "page-terms",
+			"postTypes": ["page"],
+			"title": "Page - Terms and conditions"
 		}
 	]
 }

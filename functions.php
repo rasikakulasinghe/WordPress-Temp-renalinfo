@@ -496,9 +496,9 @@ if ( ! function_exists( 'renalinfolk_render_video_embed' ) ) :
 		$video_url = get_post_meta( get_the_ID(), 'renalinfolk_video_url', true );
 
 		if ( empty( $video_url ) ) {
-			return '<div class="wp-block-embed__wrapper" style="padding: 2rem; background: #f5f7f8; border-radius: 8px; text-align: center; color: #4A4A4A;">
-				<p>No video URL provided. Please add a video URL in the post editor.</p>
-			</div>';
+			return '<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube"><div class="wp-block-embed__wrapper" style="padding: 2rem; background: #f5f7f8; border-radius: 8px; text-align: center; color: #4A4A4A;">
+				<p>No video URL provided. Please add a video URL in the post editor sidebar.</p>
+			</div></figure>';
 		}
 
 		// Use WordPress oEmbed to get the embed HTML
