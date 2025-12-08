@@ -874,6 +874,11 @@
 			"name": "page-terms",
 			"postTypes": ["page"],
 			"title": "Page - Terms and conditions"
+		},
+		{
+			"name": "page-community-forum",
+			"postTypes": ["page"],
+			"title": "Page - Community"
 		}
 	]
 }
