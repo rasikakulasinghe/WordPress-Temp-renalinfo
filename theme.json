@@ -879,6 +879,11 @@
 			"name": "page-community-forum",
 			"postTypes": ["page"],
 			"title": "Page - Community"
+		},
+		{
+			"name": "page-newsletter",
+			"postTypes": ["page"],
+			"title": "Page - News Letters"
 		}
 	]
 }
