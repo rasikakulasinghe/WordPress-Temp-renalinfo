@@ -884,6 +884,16 @@
 			"name": "page-newsletter",
 			"postTypes": ["page"],
 			"title": "Page - News Letters"
+		},
+		{
+			"name": "page-gallery-educational-materials",
+			"postTypes": ["page"],
+			"title": "Page - Ecucational Materials"
+		},
+		{
+			"name": "post-educational-materials",
+			"postTypes": ["post"],
+			"title": "Post - Ecucational Materials"
 		}
 	]
 }
