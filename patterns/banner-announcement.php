@@ -20,7 +20,7 @@
 
 		<!-- wp:html -->
 		<div style="flex-shrink: 0; width: 6rem; height: 6rem; border-radius: 9999px; background-color: var(--wp--preset--color--accent-text); display: flex; align-items: center; justify-content: center;">
-			<span class="material-symbols-outlined" style="color: var(--wp--preset--color--base); font-size: 3rem;" aria-hidden="true">campaign</span>
+			<?php echo renalinfolk_get_icon_svg( 'campaign', 48, 'var(--wp--preset--color--base)' ); ?>
 		</div>
 		<!-- /wp:html -->
 

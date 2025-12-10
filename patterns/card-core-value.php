@@ -14,7 +14,7 @@
 	<div class="wp-block-group">
 		
 		<!-- wp:html -->
-		<span class="material-symbols-outlined" style="color:var(--wp--preset--color--green-blue);font-size:1.5rem;line-height:1;">check_circle</span>
+		<?php echo renalinfolk_get_icon_svg( 'check_circle', 24, 'var(--wp--preset--color--green-blue)' ); ?>
 		<!-- /wp:html -->
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"0.25rem"}},"layout":{"type":"constrained"}} -->

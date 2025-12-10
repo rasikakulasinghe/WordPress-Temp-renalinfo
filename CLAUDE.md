@@ -207,6 +207,127 @@ Custom implementation for video posts:
 - Embed rendering: functions.php:444 (YouTube/Vimeo auto-detect)
 - Query filtering: functions.php:332 (supports `?tag=event&orderby=date`)
 
+## Icon System
+
+The theme uses **inline SVG icons** for optimal performance (2-3KB total vs 100-300KB for icon fonts).
+
+**Available Icons (17):**
+- `arrow_forward` - Navigation arrows
+- `article` - Article/document icon
+- `biotech` - Diagnostic/medical science
+- `call` - Phone/contact
+- `campaign` - Announcements
+- `celebration` - Events/celebrations
+- `check_circle` - Checkmarks/confirmation
+- `diversity_3` - Community/diversity
+- `family_restroom` - Family services
+- `image` - Image/gallery
+- `local_hospital` - Hospital/medical
+- `location_on` - Location/maps
+- `mail` - Email/contact
+- `medical_information` - Medical info
+- `play_circle` - Video/media
+- `psychology` - Counseling/mental health
+- `schedule` - Calendar/scheduling
+
+### Usage in PHP (Patterns)
+
+```php
+<?php
+// Basic usage
+echo renalinfolk_get_icon_svg( 'campaign', 40, 'var(--wp--preset--color--green-blue)' );
+
+// With additional CSS class
+echo renalinfolk_get_icon_svg( 'arrow_forward', 16, 'currentColor', 'inline-icon' );
+
+// With custom attributes
+echo renalinfolk_get_icon_svg( 'biotech', 48, '#006D77', '', array( 'role' => 'img' ) );
+?>
+```
+
+**Function Parameters:**
+- `$name` (string, required) - Icon name from list above
+- `$size` (int, optional) - Size in pixels, default 24
+- `$color` (string, optional) - CSS color value or variable, default 'currentColor'
+- `$class` (string, optional) - Additional CSS classes, default ''
+- `$attr` (array, optional) - Additional HTML attributes, default array()
+
+### Usage in Templates (HTML)
+
+Since templates are HTML files, use inline SVG directly:
+
+```html
+<!-- wp:html -->
+<svg width="40" height="40" viewBox="0 0 24 24" fill="var(--wp--preset--color--green-blue)" aria-hidden="true" class="renalinfolk-icon renalinfolk-icon--biotech" xmlns="http://www.w3.org/2000/svg">
+  <path d="M7 19c-1.1 0-2 .9-2 2h14c0-1.1-.9-2-2-2h-4v-2h3c1.1 0 2-.9 2-2h-8c-1.66 0-3-1.34-3-3 0-1.09.59-2.04 1.47-2.57L8 9.86V19H7zm5-10.5l-.83.83c-.54.54-.83 1.25-.83 2 0 .55.45 1 1 1h3c0-.55-.45-1-1-1l-2-.83-.83-.83L12 8.5zm0-5.5l3 3H9l3-3z"/>
+</svg>
+<!-- /wp:html -->
+```
+
+### Usage in Block Editor
+
+Insert icon patterns via the inserter:
+1. Open Block Inserter (`/`)
+2. Search for "Icon - " to see available icons
+3. Insert and customize colors/sizes via HTML edit
+
+**Available Icon Patterns:**
+- `renalinfolk/icon-campaign` - Campaign icon (40px, green-blue)
+- `renalinfolk/icon-biotech` - Biotech icon (40px, green-blue)
+- `renalinfolk/icon-arrow-forward` - Arrow icon (16px, currentColor)
+
+### Adding New Icons
+
+**Step 1: Get SVG Path**
+1. Go to [Google Fonts Icons](https://fonts.google.com/icons)
+2. Search for your icon (Material Symbols Outlined)
+3. Download SVG and extract the `<path d="..."/>` content
+
+**Step 2: Add to functions.php**
+
+Edit `functions.php`, find the `renalinfolk_get_icon_svg()` function (around line 825), and add your icon to the `$icons` array:
+
+```php
+$icons = array(
+	// ... existing icons ...
+	'new_icon_name' => '<path d="YOUR_SVG_PATH_DATA_HERE"/>',
+);
+```
+
+**Step 3: Create Block Pattern (Optional)**
+
+Create `patterns/icon-new-icon-name.php`:
+
+```php
+<?php
+/**
+ * Title: Icon - New Icon Name
+ * Slug: renalinfolk/icon-new-icon-name
+ * Categories: renalinfolk_medical_content
+ * Description: Description of the icon.
+ */
+?>
+<!-- wp:html -->
+<?php echo renalinfolk_get_icon_svg( 'new_icon_name', 40, 'var(--wp--preset--color--green-blue)' ); ?>
+<!-- /wp:html -->
+```
+
+**Step 4: Use in Templates/Patterns**
+- PHP files: `<?php echo renalinfolk_get_icon_svg( 'new_icon_name', 40, 'currentColor' ); ?>`
+- HTML files: Copy the SVG output and paste inline
+
+**Icon Sizing Guide:**
+- Small inline: 16px (arrows, small indicators)
+- Medium: 24px (default, list icons, checkmarks)
+- Large: 40px (feature cards, service icons)
+- Extra large: 48px (hero sections, announcements)
+
+**Performance:**
+- Each icon adds ~100-200 bytes
+- All 17 icons = ~2.5KB total
+- No external requests
+- Instant rendering
+
 ## Accessibility (WCAG AA)
 
 **Tested Contrast Ratios:**
