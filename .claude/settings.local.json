@@ -31,7 +31,14 @@
       "Bash(if [ -d \"node_modules\" ])",
       "Bash(then echo \"Dependencies installed\")",
       "Bash(else echo \"Dependencies not installed\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(grep:*)",
+      "Bash(if [ -d \"patterns-backup-unused-2025-12-12\" ])",
+      "Bash(then echo \"Backup directory created successfully\")",
+      "Bash(else echo \"Failed to create backup directory\")",
+      "Bash(cp:*)",
+      "Bash(del banner-cover-big-heading.php banner-intro-image.php banner-intro.php banner-poster.php banner-with-description-and-images-grid.php cta-centered-heading.php cta-heading-search.php hero-full-width-image.php hero-home-medical.php card-team-member.php card-core-value.php contact-info-card.php contact-info-cards-set.php news-cards-home.php resource-cards-home.php grid-videos.php grid-with-categories.php media-instagram-grid.php services-team-photos.php testimonials-2-col.php testimonials-6-col.php testimonials-large.php format-audio.php format-link.php binding-format.php icon-campaign.php icon-biotech.php icon-arrow-forward.php meet-our-team.php services-3-col.php hidden-sidebar.php hidden-written-by.php post-navigation.php sidebar-core-values.php cta-newsletter.php heading-and-paragraph-with-image.php hidden-blog-heading.php logos.php more-posts.php overlapped-images.php template-query-loop.php)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
